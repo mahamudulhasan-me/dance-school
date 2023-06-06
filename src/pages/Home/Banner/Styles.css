@@ -1,7 +1,6 @@
 /* The outermost element*/
 .header-wrapper {
   overflow: hidden;
-  /* text-align: center; */
 }
 
 .zoominheader {
@@ -18,14 +17,14 @@
 }
 
 /* The innermost element*/
-.zoomoutheader {
+/* .zoomoutheader {
   text-align: center;
   background: none;
   -webkit-animation: zoomout 10s ease-in infinite;
   animation: zoomout 10s ease-in infinite;
   transition: all 0.5s ease-in-out;
   overflow: hidden;
-}
+} */
 
 /* Zoom in Keyframes */
 @-webkit-keyframes zoomin {

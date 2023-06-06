@@ -7,10 +7,12 @@ const Banner = () => {
       <div
         className="zoominheader h-screen bg-cover"
         style={{ backgroundImage: `url(${slider2})` }}
-      >
-        <div className="zoomoutheader">
-          <p className="text"> Hello, this is a text!</p>
-        </div>
+      ></div>
+      <div className="absolute top-1/2 px-[10%]">
+        <h3 className="text-white  text-4xl">Be in the</h3>
+        <h1 className="text-8xl font-semibold text-violet-700 uppercase">
+          SpotLight
+        </h1>
       </div>
     </div>
   );
