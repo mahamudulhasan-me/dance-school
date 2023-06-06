@@ -1,0 +1,82 @@
+/* The outermost element*/
+.header-wrapper {
+  overflow: hidden;
+  /* text-align: center; */
+}
+
+.zoominheader {
+  background-attachment: fixed;
+  background-repeat: repeat;
+  position: relative;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-animation: zoomin 20s ease-in infinite;
+  animation: zoomin 20s ease-in infinite;
+  transition: all 10s ease-in-out;
+  overflow: hidden;
+}
+
+/* The innermost element*/
+.zoomoutheader {
+  text-align: center;
+  background: none;
+  -webkit-animation: zoomout 10s ease-in infinite;
+  animation: zoomout 10s ease-in infinite;
+  transition: all 0.5s ease-in-out;
+  overflow: hidden;
+}
+
+/* Zoom in Keyframes */
+@-webkit-keyframes zoomin {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes zoomin {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+} /*End of Zoom in Keyframes */
+
+/* Zoom out Keyframes */
+@-webkit-keyframes zoomout {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.67);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes zoomout {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.67);
+  }
+  100% {
+    transform: scale(1);
+  }
+} /*End of Zoom out Keyframes */
+
+/*Style for the text*/
+.text {
+  color: red;
+  font-weight: bold;
+}
