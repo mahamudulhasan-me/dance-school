@@ -5,7 +5,7 @@ const Banner = () => {
   return (
     <div className="header-wrapper ">
       <div
-        className="zoominheader min-h-screen bg-cover"
+        className="zoominheader h-[calc(100vh+5rem)] bg-cover"
         style={{ backgroundImage: `url(${slider2})` }}
       ></div>
       <div className="absolute top-1/3 px-[10%]">
@@ -17,14 +17,14 @@ const Banner = () => {
           Learn from the Best - Dance Profession
         </p>
         <div className="text-white uppercase mt-8 space-y-5">
-          <h5 className=" flex justify-between text-2xl items-center">
+          <h5 className=" flex justify-between text-xl items-center">
             <span>
               Hip-hop dance
               <span className="tracking-[0.2rem] text-3xl"> ----------</span>
             </span>
             <span className="lowercase">199.00/mon</span>
           </h5>
-          <h5 className=" flex justify-between text-2xl items-center">
+          <h5 className=" flex justify-between text-xl items-center">
             <span>
               Ballet
               <span className="tracking-[0.2rem] text-3xl">
@@ -34,14 +34,14 @@ const Banner = () => {
             </span>
             <span className="lowercase">299.00/mon</span>
           </h5>
-          <h5 className=" flex justify-between text-2xl items-center">
+          <h5 className=" flex justify-between text-xl items-center">
             <span>
               break dancing
               <span className="tracking-[0.2rem] text-3xl"> ----------</span>
             </span>
             <span className="lowercase">199.00/mon</span>
           </h5>
-          <h5 className=" flex justify-between text-2xl items-center">
+          <h5 className=" flex justify-between text-xl items-center">
             <span>
               salsa
               <span className="tracking-[0.2rem] text-3xl">
@@ -51,6 +51,10 @@ const Banner = () => {
             </span>
             <span className="lowercase">399.00/mon</span>
           </h5>
+        </div>
+        <div className="flex gap-8 mt-8">
+          <button className="my-btn1">Out service</button>
+          <button className="my-btn2">Get a quote</button>
         </div>
       </div>
     </div>
