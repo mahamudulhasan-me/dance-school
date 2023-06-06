@@ -16,3 +16,6 @@ body {
 .my-btn2 {
   @apply w-40 h-12 border-2 border-white  text-white text-xl  hover:bg-violet-800  hover:transition-all hover:duration-150 transition-all duration-300;
 }
+.pagination-clickable.swiper-pagination-bullets.swiper-pagination-horizontal {
+  @apply bottom-[90%] !important;
+}
