@@ -16,7 +16,7 @@ const Header = () => {
       <Link>
         <li>Dashboard</li>
       </Link>
-      <Link>
+      <Link to={"/login"}>
         <li>Login</li>
       </Link>
       <Link>
