@@ -16,9 +16,15 @@ body {
 .my-btn2 {
   @apply w-40 h-12 border-2 border-white  text-white text-xl  hover:bg-violet-800  hover:transition-all hover:duration-150 transition-all duration-300;
 }
-.pagination-clickable.swiper-pagination-bullets.swiper-pagination-horizontal {
+/* .pagination-clickable.swiper-pagination-bullets.swiper-pagination-horizontal {
   @apply bottom-[90%] !important;
-}
+} */
 .footer-social {
   @apply bg-gray-300 hover:bg-rose-600 hover:text-white transition-all duration-150 text-violet-800  w-10 h-10 rounded-full flex justify-center items-center;
+}
+.social_login-icon {
+  @apply hover:bg-opacity-90 py-3 rounded-md flex text-white justify-center items-center;
+}
+.signIn-input {
+  @apply outline-none w-full  border-b-2 focus:border-violet-600 p-2 text-lg;
 }

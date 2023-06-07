@@ -7,16 +7,19 @@ import {
   FaTwitter,
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import logo from "../../assets/images//dance-logo.png";
+import banner from "../../assets/images/banner/dance-img.jpg";
 import Register from "./Register";
+
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [signUp, setSignUp] = useState(false);
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center  bg-slate-300 py-10">
-      <img src={logo} alt="" className="mt-20" />
+    <div
+      style={{ backgroundImage: `url(${banner})` }}
+      className="bg-cover bg-violet-900 bg-blend-overlay min-h-screen flex flex-col justify-center items-center bg-opacity-30 py-10"
+    >
       {!signUp ? (
-        <div className=" w-[31%] mx-auto bg-white p-10">
+        <div className=" w-[31%] mx-auto bg-violet-50 p-10 mt-20">
           <h1 className="text-center text-2xl text-slate-900 font-semibold my-2">
             Login to your account
           </h1>
@@ -33,13 +36,13 @@ const Login = () => {
           </p>
 
           <div className="grid grid-cols-3 gap-8 my-6">
-            <div className="bg-blue-600 py-3 rounded-md flex text-white justify-center items-center">
+            <div className="bg-[#1877F2] social_login-icon">
               <FaFacebookF size={20} />
             </div>
-            <div className="bg-blue-600 py-2 rounded-md flex text-white justify-center items-center">
-              <FaTwitter />
+            <div className="bg-[#1DA1F2] social_login-icon">
+              <FaTwitter size={20} />
             </div>
-            <div className="bg-blue-600 py-2 rounded-md flex text-white justify-center items-center">
+            <div className="bg-[#0F9D58] social_login-icon">
               <FaGoogle />
             </div>
           </div>
@@ -55,7 +58,7 @@ const Login = () => {
                 name="email"
                 id="email"
                 placeholder="Email address"
-                className="outline-none w-full  border-b-2 focus:border-violet-600 py-2 text-lg"
+                className="signIn-input"
               />
             </div>
             <div className="relative">
@@ -64,7 +67,7 @@ const Login = () => {
                 name="password"
                 id="password"
                 placeholder="Password"
-                className="outline-none w-full  border-b-2 focus:border-violet-600 py-2 text-lg"
+                className="signIn-input"
               />
               <div
                 onClick={() => setShowPassword(!showPassword)}
