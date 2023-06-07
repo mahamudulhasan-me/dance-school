@@ -1,15 +1,67 @@
+import { updateProfile } from "@firebase/auth";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
 import { Link } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 const Register = ({ signUp, setSignUp }) => {
+  // auth hook
+  const { createNewUser } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const [acceptTerms, setAcceptTerms] = useState(true);
+
+  // check password validity
+  const [passError, setPassError] = useState("");
+  const [solidPassword, setSolidPassword] = useState("");
+  const passwordHandle = (e) => {
+    setPassError("");
+    const password = e.target.value;
+    if (!/(?=.*[a-z])/.test(password)) {
+      setPassError("At least one  letter is required");
+    } else if (!/(?=.*[A-Z])/.test(password)) {
+      setPassError("At lest one capital letter is required");
+    } else if (!/(?=.*[0-9])/.test(password)) {
+      setPassError("At least one digit is required");
+    } else if (!/(?=.*[!@#$%^&*])/.test(password)) {
+      setPassError("At least one special character is required");
+    } else if (!/(?=.{6,})/.test(password)) {
+      setPassError("Password must be 6 characters long");
+    } else {
+      setSolidPassword(password);
+    }
+  };
+  // check confirm password
+  const checkConfirmPassword = (e) => {
+    setPassError("");
+    const confirmPass = e.target.value;
+    console.log(solidPassword);
+    console.log(confirmPass);
+    if (confirmPass != solidPassword) {
+      return setPassError("Password don't match");
+    }
+    setPassError("");
+  };
 
   // react hook from functionality
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
-    console.log(data);
+    data.password = solidPassword;
+    createNewUser(data.email, data.password)
+      .then((result) => {
+        const user = result.user;
+        updateProfile(user, {
+          displayName: data.name,
+          photoURL: data.photoUrl,
+          phoneNumber: data.phoneNumber,
+        })
+          .then(() => {
+            toast.success(`User Create Successfully`);
+            console.log(user);
+          })
+          .catch((error) => toast.error(error.message));
+      })
+      .catch((error) => toast.error(error.message));
   };
 
   return (
@@ -45,7 +97,7 @@ const Register = ({ signUp, setSignUp }) => {
           <input
             type={`${showPassword ? "text" : "password"}`}
             required
-            {...register("password")}
+            onChange={passwordHandle}
             placeholder="Password"
             className="signIn-input"
           />
@@ -53,7 +105,7 @@ const Register = ({ signUp, setSignUp }) => {
           <input
             type={`${showPassword ? "text" : "password"}`}
             required
-            {...register("confirmPassword")}
+            onChange={checkConfirmPassword}
             placeholder="Confirm password"
             className="signIn-input"
           />
@@ -63,8 +115,10 @@ const Register = ({ signUp, setSignUp }) => {
               className="w-4 h-4"
               onChange={() => setShowPassword(!showPassword)}
             />
+
             <p>Show Password</p>
           </div>
+          <p className="text-rose-600">{passError}</p>
 
           <div className="text-gray-500 flex justify-between gap-2">
             <select
