@@ -1,4 +1,7 @@
+import axios from "axios";
 import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
 import {
   FaEye,
   FaEyeSlash,
@@ -6,13 +9,55 @@ import {
   FaGoogle,
   FaTwitter,
 } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import banner from "../../assets/images/banner/dance-img.jpg";
+import useAuth from "../../hooks/useAuth";
 import Register from "./Register";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [signUp, setSignUp] = useState(false);
+  const { logInWithGoogle, logInWithEmailPassword } = useAuth();
+
+  const navigate = useNavigate();
+
+  // handle google signin
+  const handleGoogleSignIn = () => {
+    logInWithGoogle()
+      .then((result) => {
+        const user = result.user;
+        const { displayName, email, photoURL, phoneNumber, uid } = user;
+        const userInfo = {
+          name: displayName,
+          email: email,
+          photoUrl: photoURL,
+          phoneNumber,
+          gender: user?.gender || null,
+          uid,
+        };
+        toast.success(`Welcome ${displayName}`);
+        navigate("/");
+        axios.post(`http://localhost:5000/newUsers`, userInfo).then((res) => {
+          if (res.data.insertedId) {
+            navigate("/");
+            toast.success("User Create Successfully");
+          }
+        });
+      })
+      .catch((err) => toast.error(err.message));
+  };
+
+  const { register, handleSubmit } = useForm();
+  const onSubmit = (data) => {
+    logInWithEmailPassword(data.email, data.password)
+      .then((result) => {
+        navigate("/");
+        toast.success(`Welcome ${result.user?.displayName}`);
+      })
+      .catch((err) => toast.error(err.message));
+  };
+  // handle email signin
+
   return (
     <div
       style={{ backgroundImage: `url(${banner})` }}
@@ -42,7 +87,10 @@ const Login = () => {
             <div className="bg-[#1DA1F2] social_login-icon">
               <FaTwitter size={20} />
             </div>
-            <div className="bg-[#0F9D58] social_login-icon">
+            <div
+              onClick={handleGoogleSignIn}
+              className="bg-[#0F9D58] social_login-icon"
+            >
               <FaGoogle />
             </div>
           </div>
@@ -51,12 +99,12 @@ const Login = () => {
             <p>or</p>
             <div className="w-full h-0.5 bg-gray-300"></div>
           </div>
-          <form className="space-y-5 mt-2">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 mt-2">
             <div>
               <input
                 type="email"
-                name="email"
-                id="email"
+                required
+                {...register("email")}
                 placeholder="Email address"
                 className="signIn-input"
               />
@@ -64,8 +112,8 @@ const Login = () => {
             <div className="relative">
               <input
                 type={`${showPassword ? "text" : "password"}`}
-                name="password"
-                id="password"
+                required
+                {...register("password")}
                 placeholder="Password"
                 className="signIn-input"
               />

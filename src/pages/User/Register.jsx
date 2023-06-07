@@ -1,8 +1,9 @@
 import { updateProfile } from "@firebase/auth";
+import axios from "axios";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 
 const Register = ({ signUp, setSignUp }) => {
@@ -43,9 +44,11 @@ const Register = ({ signUp, setSignUp }) => {
     setPassError("");
   };
 
+  const navigate = useNavigate();
   // react hook from functionality
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
+    const { name, email, photoUrl, phoneNumber, gender } = data;
     data.password = solidPassword;
     createNewUser(data.email, data.password)
       .then((result) => {
@@ -56,8 +59,22 @@ const Register = ({ signUp, setSignUp }) => {
           phoneNumber: data.phoneNumber,
         })
           .then(() => {
-            toast.success(`User Create Successfully`);
-            console.log(user);
+            const userInfo = {
+              name,
+              email,
+              photoUrl,
+              phoneNumber,
+              gender,
+              uid: user.uid,
+            };
+            axios
+              .post(`http://localhost:5000/newUsers`, userInfo)
+              .then((res) => {
+                if (res.data.insertedId) {
+                  toast.success(`User Create Successfully`);
+                  navigate("/");
+                }
+              });
           })
           .catch((error) => toast.error(error.message));
       })
@@ -136,8 +153,8 @@ const Register = ({ signUp, setSignUp }) => {
             <input
               type="number"
               required
-              {...register("mobileNumber")}
-              placeholder="Mobile number"
+              {...register("phoneNumber")}
+              placeholder="Phone number"
               className="signIn-input"
             />
           </div>
