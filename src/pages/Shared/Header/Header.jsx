@@ -23,7 +23,7 @@ const Header = () => {
       </Link>
       {user && user ? (
         <>
-          <Link>
+          <Link to={"/dashboard"}>
             <li>Dashboard</li>
           </Link>
           <div className="w-10 h-10 rounded-full ring ring-violet-700 mx-2">

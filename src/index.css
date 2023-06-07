@@ -28,3 +28,7 @@ body {
 .signIn-input {
   @apply outline-none w-full  border-b-2 focus:border-violet-600 p-2 text-lg;
 }
+
+.dashboard ul li:hover {
+  @apply bg-gray-800 dark:text-gray-50;
+}
