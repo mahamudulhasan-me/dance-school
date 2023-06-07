@@ -1,7 +1,15 @@
 import React from "react";
+import { toast } from "react-hot-toast";
 import { Link } from "react-router-dom";
 import logo from "../../../assets/images/dance-logo.png";
+import useAuth from "../../../hooks/useAuth";
 const Header = () => {
+  const { user, logout } = useAuth();
+  const handleLogOut = () => {
+    logout()
+      .then(() => toast.error("User Logout"))
+      .then((err) => toast.error(err.message));
+  };
   const naveItems = (
     <>
       <Link>
@@ -13,15 +21,32 @@ const Header = () => {
       <Link>
         <li>Classes</li>
       </Link>
-      <Link>
-        <li>Dashboard</li>
-      </Link>
-      <Link to={"/login"}>
-        <li>Login</li>
-      </Link>
-      <Link>
-        <li>Logout</li>
-      </Link>
+      {user && user ? (
+        <>
+          <Link>
+            <li>Dashboard</li>
+          </Link>
+          <div className="w-10 h-10 rounded-full ring ring-violet-700 mx-2">
+            <img
+              src={user?.photoURL}
+              alt=""
+              className="w-full h-full rounded-full"
+            />
+          </div>
+          <button
+            onClick={handleLogOut}
+            className="bg-violet-700 py-2 text-lg text-white px-6"
+          >
+            Logout
+          </button>
+        </>
+      ) : (
+        <Link to={"/login"}>
+          <button className="bg-violet-700 py-2 text-lg text-white px-6">
+            SignIn
+          </button>
+        </Link>
+      )}
     </>
   );
   return (
@@ -57,7 +82,9 @@ const Header = () => {
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="my-menu menu-horizontal px-1">{naveItems}</ul>
+          <ul className="my-menu menu-horizontal px-1 flex justify-center items-center">
+            {naveItems}
+          </ul>
         </div>
         {/* <div className="navbar-end">
           <a className="btn">Button</a>
