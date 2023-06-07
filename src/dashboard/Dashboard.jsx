@@ -18,7 +18,7 @@ const Dashboard = () => {
   const currentPath = location.pathname.split("/")[3];
   console.log(currentPath);
   return (
-    <div className="w-4/5 mx-auto h-screen bg-slate-50 grid grid-cols-12">
+    <div className="w-4/5 mx-auto min-h-screen bg-[#E9EDF4] grid grid-cols-12">
       <div className="col-span-3 h-full w-full p-3 space-y-2 dark:bg-gray-900 dark:text-gray-100">
         <div className="flex items-center p-2 space-x-4">
           <img
@@ -65,7 +65,9 @@ const Dashboard = () => {
             currentPage={currentPath}
           />
         </div>
-        <Outlet />
+        <div className="m-8">
+          <Outlet />
+        </div>
       </div>
     </div>
   );

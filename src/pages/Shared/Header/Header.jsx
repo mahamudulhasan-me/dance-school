@@ -5,6 +5,8 @@ import logo from "../../../assets/images/dance-logo.png";
 import useAuth from "../../../hooks/useAuth";
 const Header = () => {
   const { user, logout } = useAuth();
+  const isAdmin = false;
+  const isInstructor = true;
   const handleLogOut = () => {
     logout()
       .then(() => toast.error("User Logout"))
@@ -23,7 +25,15 @@ const Header = () => {
       </Link>
       {user && user ? (
         <>
-          <Link to={"/dashboard"}>
+          <Link
+            to={
+              isAdmin
+                ? "/dashboard/admin/manage-classes"
+                : isInstructor
+                ? "/dashboard/instructor/add-class"
+                : "/dashboard/selected-classes"
+            }
+          >
             <li>Dashboard</li>
           </Link>
           <div className="w-10 h-10 rounded-full ring ring-violet-700 mx-2">

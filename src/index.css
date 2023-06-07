@@ -32,3 +32,6 @@ body {
 .dashboard ul li:hover {
   @apply bg-gray-800 dark:text-gray-50;
 }
+.add_class-input {
+  @apply bg-[#E9EDF4]  w-full px-2 h-12 rounded-md outline-none focus:border border-violet-600;
+}
