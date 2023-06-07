@@ -5,8 +5,8 @@ import logo from "../../../assets/images/dance-logo.png";
 import useAuth from "../../../hooks/useAuth";
 const Header = () => {
   const { user, logout } = useAuth();
-  const isAdmin = false;
-  const isInstructor = true;
+  const isAdmin = true;
+  const isInstructor = false;
   const handleLogOut = () => {
     logout()
       .then(() => toast.error("User Logout"))

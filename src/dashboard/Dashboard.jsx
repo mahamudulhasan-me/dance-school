@@ -11,8 +11,8 @@ import UserNavItems from "./UserDashboard/UserNavItems";
 
 const Dashboard = () => {
   const { user } = useAuth();
-  const isAdmin = false;
-  const isInstructor = true;
+  const isAdmin = true;
+  const isInstructor = false;
 
   const location = useLocation();
   const currentPath = location.pathname.split("/")[3];

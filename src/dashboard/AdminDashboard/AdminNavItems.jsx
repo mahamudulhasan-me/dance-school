@@ -5,8 +5,16 @@ import DashboardNavItem from "../../components/DashboardNavItem/DashboardNavItem
 const AdminNavItems = () => {
   return (
     <>
-      <DashboardNavItem name={"Manage Classes"} icon={SiGoogletagmanager} />
-      <DashboardNavItem name={"Manage User"} icon={FaUserCog} />
+      <DashboardNavItem
+        to={"/dashboard/admin/manage-classes"}
+        name={"Manage Classes"}
+        icon={SiGoogletagmanager}
+      />
+      <DashboardNavItem
+        to={"/dashboard/admin/manage-users"}
+        name={"Manage User"}
+        icon={FaUserCog}
+      />
     </>
   );
 };
