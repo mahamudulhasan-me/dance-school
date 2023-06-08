@@ -94,7 +94,23 @@ const ManageClasses = () => {
     });
 
     if (text) {
-      Swal.fire("Feedback Submitted!", "You clicked the button!", "success");
+      fetch(`http://localhost:5000/classes/feedback/admin/${id}`, {
+        method: "PATCH",
+
+        headers: { feedback: text },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.modifiedCount > 0) {
+            refetch();
+            Swal.fire(
+              "Feedback Submitted!",
+              "You clicked the button!",
+              "success"
+            );
+          }
+        });
+
       console.log(text);
     }
   };
