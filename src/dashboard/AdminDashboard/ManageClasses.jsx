@@ -1,5 +1,99 @@
+import { useQuery } from "@tanstack/react-query";
+import React from "react";
+import { AiOutlineCloseSquare } from "react-icons/ai";
+import { BsCheck2Square } from "react-icons/bs";
+import { FcFeedback } from "react-icons/fc";
+import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
+import useAuth from "../../hooks/useAuth";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import SectionHead from "../../pages/Shared/SectionHead/SectionHead";
+
 const ManageClasses = () => {
-  return erer;
+  const { user } = useAuth();
+  const [axiosSecure] = useAxiosSecure();
+  const {
+    data: classes = [],
+    refetch,
+    isLoading,
+  } = useQuery({
+    queryKey: ["classes", "admin"],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/classes`);
+      return res.data;
+    },
+  });
+  return (
+    <div>
+      <SectionHead title="Your All Classes" />
+      <div>
+        <div className="overflow-x-auto bg-white p-5">
+          <h2 className="text-xl py-2 font-semibold">
+            Total Users: <span>5</span>
+          </h2>
+          <table className="table table-zebra">
+            {/* head */}
+            <thead className="text-lg bg-slate-200 text-slate-950">
+              <tr>
+                <th></th>
+                <th>Image</th>
+                <th>Class Name</th>
+                <th>Instructor</th>
+                <th>Inst. Email</th>
+                <th>Available Seat</th>
+                <th>Price</th>
+                <th>Status</th>
+                <th className="text-center">Action</th>
+              </tr>
+            </thead>
+            <tbody className="text-base text-center">
+              {isLoading ? (
+                <LoadingSpinner />
+              ) : (
+                classes.map((item, index) => (
+                  <tr key={item._id}>
+                    <td>{index + 1}</td>
+                    <td>
+                      <img src={item.image} alt="" className="w-20 h-20" />
+                    </td>
+                    <td> {item.name}</td>
+                    <td>{item.instructorName}</td>
+                    <td>{item.instructorEmail}</td>
+                    <td>{item.availableSeat}</td>
+                    <td>${item.price}</td>
+                    <td className="font-semibold">
+                      {item?.status === "approved" ? (
+                        <span className="text-success">Approved</span>
+                      ) : item?.status === "denied" ? (
+                        <span className="text-error">Denied</span>
+                      ) : (
+                        <span className="text-warning">Pending</span>
+                      )}
+                    </td>
+                    <td>
+                      <div className="flex justify-center items-center text-2xl font-semibold gap-3">
+                        <BsCheck2Square
+                          className="text-green-600 cursor-pointer"
+                          title="Approve"
+                        />
+                        <AiOutlineCloseSquare
+                          className="text-rose-600 cursor-pointer"
+                          title="Deny"
+                        />
+                        <FcFeedback
+                          className="cursor-pointer"
+                          title="Feedback"
+                        />
+                      </div>
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default ManageClasses;

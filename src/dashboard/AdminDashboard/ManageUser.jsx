@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
+import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import SectionHead from "../../pages/Shared/SectionHead/SectionHead";
 import User from "./User";
@@ -39,14 +40,18 @@ const ManageUsers = () => {
               </tr>
             </thead>
             <tbody className="text-base">
-              {Users?.map((user, index) => (
-                <User
-                  key={user._id}
-                  index={index}
-                  user={user}
-                  refetch={refetch}
-                />
-              ))}
+              {isLoading ? (
+                <LoadingSpinner />
+              ) : (
+                Users?.map((user, index) => (
+                  <User
+                    key={user._id}
+                    index={index}
+                    user={user}
+                    refetch={refetch}
+                  />
+                ))
+              )}
             </tbody>
           </table>
         </div>

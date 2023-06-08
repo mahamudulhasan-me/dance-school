@@ -1,11 +1,14 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 import SectionHead from "../../pages/Shared/SectionHead/SectionHead";
 
 const AddClass = () => {
   const { user } = useAuth();
   const { register, handleSubmit } = useForm();
+  const [axiosSecure] = useAxiosSecure();
 
   const onSubmit = (data) => {
     data.status = "pending";
@@ -32,13 +35,22 @@ const AddClass = () => {
           const updatedClass = {
             name,
             image: result.data.display_url,
-            availableSeat,
+            availableSeat: parseInt(availableSeat),
             instructorName,
             instructorEmail,
             price: parseFloat(price),
+            enrolledStudent: parseInt(0),
             status,
           };
-          console.log(updatedClass);
+          axiosSecure.post("/addClass", updatedClass).then((res) => {
+            if (res.data.insertedId) {
+              Swal.fire(
+                "Class Added Successfully!",
+                "You clicked the button!",
+                "success"
+              );
+            }
+          });
         }
       });
   };

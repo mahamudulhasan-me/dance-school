@@ -3,7 +3,7 @@ import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 
-const User = ({ user, index, refetch }) => {
+const User = ({ user, index, refetch, loading }) => {
   const [edit, setEdit] = useState(false);
   const { _id, name, email } = user;
   const [axiosSecure] = useAxiosSecure();
