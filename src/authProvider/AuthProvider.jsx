@@ -27,7 +27,7 @@ const AuthProvider = ({ children }) => {
 
   //   signIn with google
   const logInWithGoogle = () => {
-    loading(false);
+    setLoading(false);
     return signInWithPopup(auth, googleProvider);
   };
   //   create new user

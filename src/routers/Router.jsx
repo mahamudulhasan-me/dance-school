@@ -7,6 +7,9 @@ import MyClasses from "../dashboard/InstructorDashboard/MyClasses";
 import Main from "../layouts/Main";
 import Home from "../pages/Home/Home";
 import Login from "../pages/User/Login";
+import InstructorProtected from "../protectedRoute/InstructorProtected";
+import ProtectedRoute from "../protectedRoute/ProtectedRoute";
+import AdminProtected from "../protectedRoute/adminProtected";
 
 const router = createBrowserRouter([
   {
@@ -25,25 +28,45 @@ const router = createBrowserRouter([
   },
   {
     path: "dashboard",
-    element: <Dashboard />,
+    element: (
+      <ProtectedRoute>
+        <Dashboard />
+      </ProtectedRoute>
+    ),
     children: [
       // instructor router
       {
         path: "/dashboard/instructor/add-class",
-        element: <AddClass />,
+        element: (
+          <InstructorProtected>
+            <AddClass />
+          </InstructorProtected>
+        ),
       },
       {
         path: "/dashboard/instructor/my-class",
-        element: <MyClasses />,
+        element: (
+          <InstructorProtected>
+            <MyClasses />
+          </InstructorProtected>
+        ),
       },
       // admin router
       {
         path: "/dashboard/admin/manage-classes",
-        element: <ManageClasses />,
+        element: (
+          <AdminProtected>
+            <ManageClasses />
+          </AdminProtected>
+        ),
       },
       {
         path: "/dashboard/admin/manage-users",
-        element: <ManageUsers />,
+        element: (
+          <AdminProtected>
+            <ManageUsers />
+          </AdminProtected>
+        ),
       },
     ],
   },
