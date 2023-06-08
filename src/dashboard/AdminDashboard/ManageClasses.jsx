@@ -1,8 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import React, { useState } from "react";
 import { AiOutlineCloseSquare } from "react-icons/ai";
 import { BsCheck2Square } from "react-icons/bs";
 import { FcFeedback } from "react-icons/fc";
+import Swal from "sweetalert2";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
@@ -11,6 +12,7 @@ import SectionHead from "../../pages/Shared/SectionHead/SectionHead";
 const ManageClasses = () => {
   const { user } = useAuth();
   const [axiosSecure] = useAxiosSecure();
+  const [disable, setDisable] = useState(false);
   const {
     data: classes = [],
     refetch,
@@ -22,6 +24,80 @@ const ManageClasses = () => {
       return res.data;
     },
   });
+  // approve class
+  const handleApprove = (id) => {
+    Swal.fire({
+      title: "Do you want to approve this class?",
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: "Approve",
+      denyButtonText: `Don't approve`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/classes/admin/${id}`, {
+          method: "PATCH",
+          headers: { status: "approve" },
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.modifiedCount > 0) {
+              refetch();
+              Swal.fire("Approved!", "", "success");
+              setDisable(!disable);
+            }
+          });
+      } else if (result.isDenied) {
+        Swal.fire("Changes are not saved", "", "info");
+      }
+    });
+  };
+  // handle denied
+  const handleDeny = (id) => {
+    Swal.fire({
+      title: "Do you want to denied this class?",
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: "Denied",
+      denyButtonText: `Don't deny`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/classes/admin/${id}`, {
+          method: "PATCH",
+          headers: { status: "deny" },
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.modifiedCount > 0) {
+              refetch();
+              Swal.fire("Denied!", "", "success");
+              setDisable(!disable);
+            }
+          });
+      } else if (result.isDenied) {
+        Swal.fire("Changes are not saved", "", "info");
+      }
+    });
+  };
+
+  // handle feedback
+  const handleFeedback = async (id) => {
+    const { value: text } = await Swal.fire({
+      input: "textarea",
+      inputLabel: "Feedback",
+      inputPlaceholder: "Type your feedback here...",
+      inputAttributes: {
+        "aria-label": "Type your feedback here",
+      },
+      showCancelButton: true,
+    });
+
+    if (text) {
+      Swal.fire("Feedback Submitted!", "You clicked the button!", "success");
+      console.log(text);
+    }
+  };
   return (
     <div>
       <SectionHead title="Your All Classes" />
@@ -71,15 +147,26 @@ const ManageClasses = () => {
                     </td>
                     <td>
                       <div className="flex justify-center items-center text-2xl font-semibold gap-3">
-                        <BsCheck2Square
-                          className="text-green-600 cursor-pointer"
-                          title="Approve"
-                        />
-                        <AiOutlineCloseSquare
-                          className="text-rose-600 cursor-pointer"
-                          title="Deny"
-                        />
+                        <button
+                          onClick={() => handleApprove(item._id)}
+                          disabled={disable}
+                        >
+                          <BsCheck2Square
+                            className="text-green-600 "
+                            title="Approve"
+                          />
+                        </button>
+                        <button
+                          onClick={() => handleDeny(item._id)}
+                          disabled={disable}
+                        >
+                          <AiOutlineCloseSquare
+                            className="text-rose-600"
+                            title="Deny"
+                          />
+                        </button>
                         <FcFeedback
+                          onClick={() => handleFeedback(item._id)}
                           className="cursor-pointer"
                           title="Feedback"
                         />
