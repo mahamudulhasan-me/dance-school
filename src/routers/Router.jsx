@@ -4,6 +4,9 @@ import ManageUsers from "../dashboard/AdminDashboard/ManageUser";
 import Dashboard from "../dashboard/Dashboard";
 import AddClass from "../dashboard/InstructorDashboard/AddClass";
 import MyClasses from "../dashboard/InstructorDashboard/MyClasses";
+import EnrolledClasses from "../dashboard/UserDashboard/EnrolledClasses";
+import SelectedClasses from "../dashboard/UserDashboard/SelectedClasses";
+import WelcomePage from "../dashboard/WelcomePage";
 import Main from "../layouts/Main";
 import Home from "../pages/Home/Home";
 import Login from "../pages/User/Login";
@@ -27,13 +30,24 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "dashboard",
+    path: "/dashboard",
     element: (
       <ProtectedRoute>
         <Dashboard />
       </ProtectedRoute>
     ),
     children: [
+      { path: "/dashboard", element: <WelcomePage /> },
+      // student router
+      {
+        path: "/dashboard/student/selected-classes",
+        element: <SelectedClasses />,
+      },
+      {
+        path: "/dashboard/student/enrolled-classes",
+        element: <EnrolledClasses />,
+      },
+
       // instructor router
       {
         path: "/dashboard/instructor/add-class",
@@ -51,6 +65,7 @@ const router = createBrowserRouter([
           </InstructorProtected>
         ),
       },
+
       // admin router
       {
         path: "/dashboard/admin/manage-classes",

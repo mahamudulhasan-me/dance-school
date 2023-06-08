@@ -63,9 +63,9 @@ const User = ({ user, index, refetch, loading }) => {
       <td>{email}</td>
       <td>
         {user?.role === "admin" ? (
-          <p className="text-green-700 font-semibold">Admin</p>
+          <p className="text-primary font-semibold">Admin</p>
         ) : user?.role == "instructor" ? (
-          "Instructor"
+          <span className="text-secondary font-semibold">Instructor</span>
         ) : (
           "Student"
         )}

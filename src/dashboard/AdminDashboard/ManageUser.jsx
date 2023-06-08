@@ -28,32 +28,36 @@ const ManageUsers = () => {
           <h2 className="text-xl py-2 font-semibold">
             Total Users: <span>5</span>
           </h2>
-          <table className="table table-zebra">
-            {/* head */}
-            <thead className="text-lg bg-slate-200 text-slate-950">
-              <tr>
-                <th></th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Role</th>
-                <th className="text-center">Action</th>
-              </tr>
-            </thead>
-            <tbody className="text-base">
-              {isLoading ? (
-                <LoadingSpinner />
-              ) : (
-                Users?.map((user, index) => (
-                  <User
-                    key={user._id}
-                    index={index}
-                    user={user}
-                    refetch={refetch}
-                  />
-                ))
-              )}
-            </tbody>
-          </table>
+          {isLoading ? (
+            <LoadingSpinner />
+          ) : (
+            <table className="table table-zebra">
+              {/* head */}
+              <thead className="text-lg bg-slate-200 text-slate-950">
+                <tr>
+                  <th></th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Role</th>
+                  <th className="text-center">Action</th>
+                </tr>
+              </thead>
+              <tbody className="text-base">
+                {isLoading ? (
+                  <LoadingSpinner />
+                ) : (
+                  Users?.map((user, index) => (
+                    <User
+                      key={user._id}
+                      index={index}
+                      user={user}
+                      refetch={refetch}
+                    />
+                  ))
+                )}
+              </tbody>
+            </table>
+          )}
         </div>
       </div>
     </div>

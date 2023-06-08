@@ -27,15 +27,7 @@ const Header = () => {
       </Link>
       {user && user ? (
         <>
-          <Link
-            to={
-              isAdmin
-                ? "/dashboard/admin/manage-classes"
-                : isInstructor
-                ? "/dashboard/instructor/add-class"
-                : "/dashboard/selected-classes"
-            }
-          >
+          <Link to={"/dashboard"}>
             <li>Dashboard</li>
           </Link>
           <div className="w-10 h-10 rounded-full ring ring-violet-700 mx-2">

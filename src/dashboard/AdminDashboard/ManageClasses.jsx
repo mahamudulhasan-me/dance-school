@@ -116,83 +116,87 @@ const ManageClasses = () => {
   };
   return (
     <div>
-      <SectionHead title="Your All Classes" />
+      <SectionHead title="All Classes" />
       <div>
         <div className="overflow-x-auto bg-white p-5">
           <h2 className="text-xl py-2 font-semibold">
             Total Users: <span>5</span>
           </h2>
-          <table className="table table-zebra">
-            {/* head */}
-            <thead className="text-lg bg-slate-200 text-slate-950">
-              <tr>
-                <th></th>
-                <th>Image</th>
-                <th>Class Name</th>
-                <th>Instructor</th>
-                <th>Inst. Email</th>
-                <th>Available Seat</th>
-                <th>Price</th>
-                <th>Status</th>
-                <th className="text-center">Action</th>
-              </tr>
-            </thead>
-            <tbody className="text-base text-center">
-              {isLoading ? (
-                <LoadingSpinner />
-              ) : (
-                classes.map((item, index) => (
-                  <tr key={item._id}>
-                    <td>{index + 1}</td>
-                    <td>
-                      <img src={item.image} alt="" className="w-20 h-20" />
-                    </td>
-                    <td> {item.name}</td>
-                    <td>{item.instructorName}</td>
-                    <td>{item.instructorEmail}</td>
-                    <td>{item.availableSeat}</td>
-                    <td>${item.price}</td>
-                    <td className="font-semibold">
-                      {item?.status === "approved" ? (
-                        <span className="text-success">Approved</span>
-                      ) : item?.status === "denied" ? (
-                        <span className="text-error">Denied</span>
-                      ) : (
-                        <span className="text-warning">Pending</span>
-                      )}
-                    </td>
-                    <td>
-                      <div className="flex justify-center items-center text-2xl font-semibold gap-3">
-                        <button
-                          onClick={() => handleApprove(item._id)}
-                          disabled={disable}
-                        >
-                          <BsCheck2Square
-                            className="text-green-600 "
-                            title="Approve"
+          {isLoading ? (
+            <LoadingSpinner />
+          ) : (
+            <table className="table table-zebra">
+              {/* head */}
+              <thead className="text-lg bg-slate-200 text-slate-950">
+                <tr className="text-center">
+                  <th></th>
+                  <th>Image</th>
+                  <th>Class Name</th>
+                  <th>Instructor</th>
+                  <th>Inst. Email</th>
+                  <th>Available Seat</th>
+                  <th>Price</th>
+                  <th>Status</th>
+                  <th className="text-center">Action</th>
+                </tr>
+              </thead>
+              <tbody className="text-base text-center">
+                {isLoading ? (
+                  <LoadingSpinner />
+                ) : (
+                  classes.map((item, index) => (
+                    <tr key={item._id}>
+                      <td>{index + 1}</td>
+                      <td>
+                        <img src={item.image} alt="" />
+                      </td>
+                      <td> {item.name}</td>
+                      <td>{item.instructorName}</td>
+                      <td>{item.instructorEmail}</td>
+                      <td>{item.availableSeat}</td>
+                      <td>${item.price}</td>
+                      <td className="font-semibold">
+                        {item?.status === "approved" ? (
+                          <span className="text-success">Approved</span>
+                        ) : item?.status === "denied" ? (
+                          <span className="text-error">Denied</span>
+                        ) : (
+                          <span className="text-warning">Pending</span>
+                        )}
+                      </td>
+                      <td>
+                        <div className="flex justify-center items-center text-2xl font-semibold gap-3">
+                          <button
+                            onClick={() => handleApprove(item._id)}
+                            disabled={disable}
+                          >
+                            <BsCheck2Square
+                              className="text-green-600 "
+                              title="Approve"
+                            />
+                          </button>
+                          <button
+                            onClick={() => handleDeny(item._id)}
+                            disabled={disable}
+                          >
+                            <AiOutlineCloseSquare
+                              className="text-rose-600"
+                              title="Deny"
+                            />
+                          </button>
+                          <FcFeedback
+                            onClick={() => handleFeedback(item._id)}
+                            className="cursor-pointer"
+                            title="Feedback"
                           />
-                        </button>
-                        <button
-                          onClick={() => handleDeny(item._id)}
-                          disabled={disable}
-                        >
-                          <AiOutlineCloseSquare
-                            className="text-rose-600"
-                            title="Deny"
-                          />
-                        </button>
-                        <FcFeedback
-                          onClick={() => handleFeedback(item._id)}
-                          className="cursor-pointer"
-                          title="Feedback"
-                        />
-                      </div>
-                    </td>
-                  </tr>
-                ))
-              )}
-            </tbody>
-          </table>
+                        </div>
+                      </td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          )}
         </div>
       </div>
     </div>

@@ -50,7 +50,7 @@ const MyClasses = () => {
                   <tr key={myClass._id}>
                     <td>{index + 1}</td>
                     <td>
-                      <img src={myClass.image} alt="" className="w-20 h-20" />
+                      <img src={myClass.image} alt="" className="w-20 h-16" />
                     </td>
                     <td> {myClass.name}</td>
                     <td className="font-semibold">

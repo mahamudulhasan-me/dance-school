@@ -1,6 +1,7 @@
 import React from "react";
 import { AiFillSetting, AiTwotoneHome } from "react-icons/ai";
 import { LuLogOut } from "react-icons/lu";
+import { MdDashboard } from "react-icons/md";
 import { Outlet, useLocation } from "react-router";
 import DashboardNavItem from "../components/DashboardNavItem/DashboardNavItem";
 import useAdmin from "../hooks/useAdmin";
@@ -43,6 +44,11 @@ const Dashboard = () => {
         </div>
         <div className="divide-y divide-gray-700 dashboard">
           <ul className="pt-2 pb-4 space-y-1">
+            <DashboardNavItem
+              to={"/dashboard"}
+              name="Dashboard"
+              icon={MdDashboard}
+            />
             {isAdmin ? (
               <AdminNavItems />
             ) : isInstructor ? (
