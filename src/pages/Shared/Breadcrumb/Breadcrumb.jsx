@@ -1,6 +1,7 @@
 import React from "react";
 import { AiFillHome } from "react-icons/ai";
 import { FaCaretRight } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Breadcrumb = ({ userLabel, currentPage }) => {
   return (
@@ -22,13 +23,13 @@ const Breadcrumb = ({ userLabel, currentPage }) => {
           </li>
           <li className="flex items-center space-x-2">
             <FaCaretRight />
-            <a
+            <Link
               rel="noopener noreferrer"
-              href="#"
+              to={"/dashboard"}
               className="flex items-center px-1 capitalize hover:underline"
             >
               Dashboard
-            </a>
+            </Link>
           </li>
           <li className="flex items-center space-x-2">
             <FaCaretRight />

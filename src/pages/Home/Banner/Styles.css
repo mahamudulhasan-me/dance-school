@@ -12,19 +12,19 @@
   -ms-user-select: none;
   -webkit-animation: zoomin 20s ease-in infinite;
   animation: zoomin 20s ease-in infinite;
-  transition: all 10s ease-in-out;
+  transition: all 20s ease-in-out;
   overflow: hidden;
 }
 
 /* The innermost element*/
-/* .zoomoutheader {
+.zoomoutheader {
   text-align: center;
   background: none;
   -webkit-animation: zoomout 10s ease-in infinite;
   animation: zoomout 10s ease-in infinite;
   transition: all 0.5s ease-in-out;
   overflow: hidden;
-} */
+}
 
 /* Zoom in Keyframes */
 @-webkit-keyframes zoomin {
