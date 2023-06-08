@@ -3,7 +3,9 @@ import { AiFillSetting, AiTwotoneHome } from "react-icons/ai";
 import { LuLogOut } from "react-icons/lu";
 import { Outlet, useLocation } from "react-router";
 import DashboardNavItem from "../components/DashboardNavItem/DashboardNavItem";
+import useAdmin from "../hooks/useAdmin";
 import useAuth from "../hooks/useAuth";
+import useInstructor from "../hooks/useInstructor";
 import Breadcrumb from "../pages/Shared/Breadcrumb/Breadcrumb";
 import AdminNavItems from "./AdminDashboard/AdminNavItems";
 import InstructorNavItems from "./InstructorDashboard/InstructorNavItems";
@@ -11,8 +13,8 @@ import UserNavItems from "./UserDashboard/UserNavItems";
 
 const Dashboard = () => {
   const { user } = useAuth();
-  const isAdmin = true;
-  const isInstructor = false;
+  const [isAdmin] = useAdmin();
+  const [isInstructor] = useInstructor();
 
   const location = useLocation();
   const currentPath = location.pathname.split("/")[3];

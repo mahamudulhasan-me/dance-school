@@ -1,9 +1,15 @@
 import React from "react";
-import GridLoader from "react-spinner";
+import { RotatingLines } from "react-loader-spinner";
 const LoadingSpinner = () => {
   return (
-    <div className="flex justify-center items-center">
-      <GridLoader color="#6d28d9" />
+    <div className=" flex justify-center items-center">
+      <RotatingLines
+        strokeColor="#6d28d9"
+        strokeWidth="5"
+        animationDuration="0.75"
+        width="96"
+        visible={true}
+      />
     </div>
   );
 };

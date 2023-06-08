@@ -11,8 +11,8 @@ const MyClasses = () => {
   const [axiosSecure] = useAxiosSecure();
   const {
     data: myClasses = [],
-    refetch,
     isLoading,
+    refetch,
   } = useQuery({
     queryKey: ["myClasses", user?.email],
     queryFn: async () => {
@@ -26,26 +26,27 @@ const MyClasses = () => {
       <div>
         <div className="overflow-x-auto bg-white p-5">
           <h2 className="text-xl py-2 font-semibold">
-            Total Users: <span>5</span>
+            Total Users: <span>{myClasses.length}</span>
           </h2>
-          <table className="table table-zebra">
-            {/* head */}
-            <thead className="text-lg bg-slate-200 text-slate-950">
-              <tr>
-                <th></th>
-                <th>Image</th>
-                <th>Class Name</th>
-                <th>Status</th>
-                <th>Enrolled</th>
-                <th>Feedback</th>
-                <th>Update</th>
-              </tr>
-            </thead>
-            <tbody className="text-base text-center">
-              {isLoading ? (
-                <LoadingSpinner />
-              ) : (
-                myClasses.map((myClass, index) => (
+          {isLoading ? (
+            <LoadingSpinner />
+          ) : (
+            <table className="table table-zebra">
+              {/* head */}
+              <thead className="text-lg bg-slate-200 text-slate-950">
+                <tr>
+                  <th></th>
+                  <th>Image</th>
+                  <th>Class Name</th>
+                  <th>Status</th>
+                  <th>Enrolled</th>
+                  <th>Feedback</th>
+                  <th>Update</th>
+                </tr>
+              </thead>
+
+              <tbody className="text-base text-center">
+                {myClasses.map((myClass, index) => (
                   <tr key={myClass._id}>
                     <td>{index + 1}</td>
                     <td>
@@ -69,10 +70,10 @@ const MyClasses = () => {
                       <FaEdit size={24} className="text-violet-700" />
                     </td>
                   </tr>
-                ))
-              )}
-            </tbody>
-          </table>
+                ))}
+              </tbody>
+            </table>
+          )}
         </div>
       </div>
     </div>

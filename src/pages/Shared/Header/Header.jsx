@@ -2,11 +2,13 @@ import React from "react";
 import { toast } from "react-hot-toast";
 import { Link } from "react-router-dom";
 import logo from "../../../assets/images/dance-logo.png";
+import useAdmin from "../../../hooks/useAdmin";
 import useAuth from "../../../hooks/useAuth";
+import useInstructor from "../../../hooks/useInstructor";
 const Header = () => {
   const { user, logout } = useAuth();
-  const isAdmin = true;
-  const isInstructor = false;
+  const [isAdmin] = useAdmin();
+  const [isInstructor] = useInstructor();
   const handleLogOut = () => {
     logout()
       .then(() => toast.error("User Logout"))

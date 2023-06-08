@@ -27,6 +27,7 @@ const AuthProvider = ({ children }) => {
 
   //   signIn with google
   const logInWithGoogle = () => {
+    loading(false);
     return signInWithPopup(auth, googleProvider);
   };
   //   create new user
@@ -41,7 +42,6 @@ const AuthProvider = ({ children }) => {
   //   check user is login or not
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setLoading(false);
       setUser(currentUser);
       if (currentUser) {
         axios
@@ -50,6 +50,7 @@ const AuthProvider = ({ children }) => {
             localStorage.setItem("access-token", res.data);
             console.log(res.data);
           });
+        setLoading(false);
       } else {
         localStorage.removeItem("access-token");
       }
