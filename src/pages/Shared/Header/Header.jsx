@@ -16,13 +16,13 @@ const Header = () => {
   };
   const naveItems = (
     <>
-      <Link>
+      <Link to={"/"}>
         <li>Home</li>
       </Link>
-      <Link>
+      <Link to={"/instructors"}>
         <li>Instructor</li>
       </Link>
-      <Link>
+      <Link to={"/classes"}>
         <li>Classes</li>
       </Link>
       {user && user ? (

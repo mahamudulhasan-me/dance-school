@@ -35,3 +35,6 @@ body {
 .add_class-input {
   @apply bg-[#E9EDF4]  w-full px-2 h-12 rounded-md outline-none focus:border border-violet-600;
 }
+/* .gradient-text {
+  @apply font-extrabold text-transparent text-8xl bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600;
+} */

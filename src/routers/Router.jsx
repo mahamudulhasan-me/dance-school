@@ -8,7 +8,9 @@ import EnrolledClasses from "../dashboard/UserDashboard/EnrolledClasses";
 import SelectedClasses from "../dashboard/UserDashboard/SelectedClasses";
 import WelcomePage from "../dashboard/WelcomePage";
 import Main from "../layouts/Main";
+import ApprovedClasses from "../pages/ApprovedClasses/ApprovedClasses";
 import Home from "../pages/Home/Home";
+import Instructors from "../pages/Instructors/Instructors";
 import Login from "../pages/User/Login";
 import InstructorProtected from "../protectedRoute/InstructorProtected";
 import ProtectedRoute from "../protectedRoute/ProtectedRoute";
@@ -22,6 +24,14 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/classes",
+        element: <ApprovedClasses />,
+      },
+      {
+        path: "/instructors",
+        element: <Instructors />,
       },
       {
         path: "login",
