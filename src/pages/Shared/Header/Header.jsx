@@ -1,14 +1,13 @@
 import React from "react";
 import { toast } from "react-hot-toast";
+import { FaOpencart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import logo from "../../../assets/images/dance-logo.png";
-import useAdmin from "../../../hooks/useAdmin";
 import useAuth from "../../../hooks/useAuth";
-import useInstructor from "../../../hooks/useInstructor";
+import useSelectedClass from "../../../hooks/useSelectedClass";
 const Header = () => {
   const { user, logout } = useAuth();
-  const [isAdmin] = useAdmin();
-  const [isInstructor] = useInstructor();
+  const [selectedClasses] = useSelectedClass();
   const handleLogOut = () => {
     logout()
       .then(() => toast.error("User Logout"))
@@ -25,11 +24,20 @@ const Header = () => {
       <Link to={"/classes"}>
         <li>Classes</li>
       </Link>
-      {user && user ? (
+
+      {user && (
+        <Link to={"/dashboard"}>
+          <li>Dashboard</li>
+        </Link>
+      )}
+      <p className=" relative mx-2">
+        <FaOpencart className="text-rose-600 text-4xl" />
+        <p className="absolute top-2 text-violet-600 font-semibold right-1/2 ">
+          {selectedClasses.length}
+        </p>
+      </p>
+      {user ? (
         <>
-          <Link to={"/dashboard"}>
-            <li>Dashboard</li>
-          </Link>
           <div className="w-10 h-10 rounded-full ring ring-violet-700 mx-2">
             <img
               src={user?.photoURL}
