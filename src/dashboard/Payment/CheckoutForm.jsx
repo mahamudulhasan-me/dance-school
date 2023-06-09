@@ -1,5 +1,6 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import React, { useEffect, useState } from "react";
+import { toast } from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import "./Styles.css";
@@ -110,6 +111,7 @@ const CheckoutForm = ({ price }) => {
     name: "",
   });
   const [clientSecret, setClientSecret] = useState("");
+  const [transactionId, setTransactionId] = useState();
 
   const { user } = useAuth();
   const [axiosSecure] = useAxiosSecure();
@@ -149,6 +151,11 @@ const CheckoutForm = ({ price }) => {
       type: "card",
       card,
     });
+    if (payload.error) {
+      setError(payload.error);
+    } else {
+      setPaymentMethod(payload.paymentMethod);
+    }
 
     const { paymentIntent, error: confirmError } =
       await stripe.confirmCardPayment(clientSecret, {
@@ -157,13 +164,26 @@ const CheckoutForm = ({ price }) => {
           billing_details: billingDetails,
         },
       });
-    setProcessing(false);
-    console.log(paymentIntent);
-    if (payload.error) {
-      setError(payload.error);
-    } else {
-      setPaymentMethod(payload.paymentMethod);
+
+    if (confirmError) {
+      setError(confirmError.message);
     }
+
+    if (paymentIntent.status === "succeeded") {
+      setTransactionId(paymentIntent.id);
+      const payment = {
+        email: user?.email,
+        transactionId: paymentIntent.id,
+        date: new Date(),
+        status: "service pending",
+      };
+      axiosSecure.post("/payments/", payment).then((response) => {
+        if (response.data.insertedResult.insertedId) {
+          toast.success("Payment Success!");
+        }
+      });
+    }
+    setProcessing(false);
   };
 
   const reset = () => {
