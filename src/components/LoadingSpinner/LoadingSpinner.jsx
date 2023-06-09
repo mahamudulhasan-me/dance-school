@@ -7,7 +7,7 @@ const LoadingSpinner = () => {
         strokeColor="#6d28d9"
         strokeWidth="5"
         animationDuration="0.75"
-        width="96"
+        width="70"
         visible={true}
       />
     </div>

@@ -1,16 +1,17 @@
 import React from "react";
 import { toast } from "react-hot-toast";
 import { MdRemoveCircle } from "react-icons/md";
+import { Link } from "react-router-dom";
 import rightArrow from "../../assets/images/right-arrow.gif";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useSelectedClass from "../../hooks/useSelectedClass";
 import SectionHead from "../../pages/Shared/SectionHead/SectionHead";
+
 const SelectedClasses = () => {
   const [selectedClasses, refetch, isLoading] = useSelectedClass();
   const [axiosSecure] = useAxiosSecure();
-  const price = selectedClasses.map((item) => item.price);
-  const totalPrice = price.reduce((pre, curr) => pre + curr, 0);
+  const totalPrice = selectedClasses.reduce((pre, cur) => pre + cur.price, 0);
 
   const handleRemove = (id, name) => {
     axiosSecure.delete(`/selectedClass/${id}`).then((res) => {
@@ -32,9 +33,12 @@ const SelectedClasses = () => {
           <p>Price: ${totalPrice}</p>
           <img src={rightArrow} alt="" className="w-10" />
 
-          <div className="bg-primary w-32 font-normal text-white text-center py-2">
+          <Link
+            to={"/dashboard/student/payment"}
+            className="bg-primary w-32 font-normal text-white text-center py-2"
+          >
             Payment
-          </div>
+          </Link>
         </div>
         {isLoading ? (
           <LoadingSpinner />
