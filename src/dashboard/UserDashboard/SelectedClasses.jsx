@@ -3,15 +3,22 @@ import { toast } from "react-hot-toast";
 import { MdRemoveCircle } from "react-icons/md";
 import rightArrow from "../../assets/images/right-arrow.gif";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useSelectedClass from "../../hooks/useSelectedClass";
 import SectionHead from "../../pages/Shared/SectionHead/SectionHead";
 const SelectedClasses = () => {
   const [selectedClasses, refetch, isLoading] = useSelectedClass();
+  const [axiosSecure] = useAxiosSecure();
   const price = selectedClasses.map((item) => item.price);
   const totalPrice = price.reduce((pre, curr) => pre + curr, 0);
 
   const handleRemove = (id, name) => {
-    toast.error(`${name} class remove from selected`);
+    axiosSecure.delete(`/selectedClass/${id}`).then((res) => {
+      if (res.data.deletedCount > 0) {
+        refetch();
+        toast.error(`${name} class remove from selected`);
+      }
+    });
   };
   return (
     <div>

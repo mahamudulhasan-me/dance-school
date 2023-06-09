@@ -12,9 +12,7 @@ const useSelectedClass = () => {
   } = useQuery({
     queryKey: ["selected-class"],
     queryFn: async () => {
-      const res = await axiosSecure.get(
-        `http://localhost:5000/selectedClass/${user.email}`
-      );
+      const res = await axiosSecure.get(`/selectedClass/${user?.email}`);
       return res.data;
     },
   });
