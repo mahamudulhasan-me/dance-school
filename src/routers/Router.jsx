@@ -6,6 +6,7 @@ import AddClass from "../dashboard/InstructorDashboard/AddClass";
 import MyClasses from "../dashboard/InstructorDashboard/MyClasses";
 import Payment from "../dashboard/Payment/Payment";
 import EnrolledClasses from "../dashboard/UserDashboard/EnrolledClasses";
+import PaymentHistory from "../dashboard/UserDashboard/PaymentHistory";
 import SelectedClasses from "../dashboard/UserDashboard/SelectedClasses";
 import WelcomePage from "../dashboard/WelcomePage";
 import Main from "../layouts/Main";
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/student/payment",
         element: <Payment />,
+      },
+      {
+        path: "/dashboard/student/payment-history",
+        element: <PaymentHistory />,
       },
       {
         path: "/dashboard/student/enrolled-classes",

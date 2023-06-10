@@ -34,7 +34,9 @@ const SelectedClasses = () => {
           <img src={rightArrow} alt="" className="w-10" />
 
           <Link
-            to={"/dashboard/student/payment"}
+            to={
+              selectedClasses.length === 0 ? "" : "/dashboard/student/payment"
+            }
             className="bg-primary w-32 font-normal text-white text-center py-2"
           >
             Payment
@@ -42,6 +44,10 @@ const SelectedClasses = () => {
         </div>
         {isLoading ? (
           <LoadingSpinner />
+        ) : selectedClasses.length === 0 ? (
+          <p className="text-center text-warning font-semibold mt-5">
+            No Class Selected
+          </p>
         ) : (
           <table className="table table-zebra">
             {/* head */}

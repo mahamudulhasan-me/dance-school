@@ -26,7 +26,7 @@ const UserNavItems = () => {
         icon={FaAddressBook}
       />
       <DashboardNavItem
-        to={"/dashboard/student/enrolled-classes"}
+        to={"/dashboard/student/payment-history"}
         name="Payment History"
         icon={MdPayments}
       />

@@ -36,7 +36,7 @@ const Header = () => {
       >
         <FaOpencart className="text-rose-600 text-4xl" />
         <p className="absolute top-2 text-violet-600 font-semibold right-1/2 ">
-          {selectedClasses.length}
+          {selectedClasses?.length}
         </p>
       </Link>
       {user ? (

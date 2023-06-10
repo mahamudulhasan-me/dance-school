@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useSelectedClass from "../../hooks/useSelectedClass";
 import "./Styles.css";
 const CARD_OPTIONS = {
   iconStyle: "solid",
@@ -61,16 +62,6 @@ const Field = ({
   </div>
 );
 
-const SubmitButton = ({ processing, error, children, disabled }) => (
-  <button
-    className={`SubmitButton ${error ? "SubmitButton--error" : ""}`}
-    type="submit"
-    disabled={processing || disabled}
-  >
-    {processing ? "Processing..." : children}
-  </button>
-);
-
 const ErrorMessage = ({ children }) => (
   <div className="ErrorMessage " role="alert">
     <svg width="16" height="16" viewBox="0 0 17 17">
@@ -86,7 +77,21 @@ const ErrorMessage = ({ children }) => (
     <span className="text-rose-600">{children}</span>
   </div>
 );
-
+const SubmitButton = ({
+  processing,
+  error,
+  children,
+  disabled,
+  clientSecret,
+}) => (
+  <button
+    className={`SubmitButton ${error ? "SubmitButton--error" : ""}`}
+    type="submit"
+    disabled={!clientSecret || processing || disabled}
+  >
+    {processing ? "Processing..." : children}
+  </button>
+);
 const ResetButton = ({ onClick }) => (
   <button type="button" className="ResetButton" onClick={onClick}>
     <svg width="32px" height="32px" viewBox="0 0 32 32">
@@ -115,6 +120,7 @@ const CheckoutForm = ({ price }) => {
 
   const { user } = useAuth();
   const [axiosSecure] = useAxiosSecure();
+  const [selectedClasses, refetch] = useSelectedClass();
 
   useEffect(() => {
     if (price > 0) {
@@ -127,8 +133,6 @@ const CheckoutForm = ({ price }) => {
     event.preventDefault();
 
     if (!stripe || !elements) {
-      // Stripe.js has not loaded yet. Make sure to disable
-      // form submission until Stripe.js has loaded.
       return;
     }
 
@@ -137,26 +141,17 @@ const CheckoutForm = ({ price }) => {
     if (card == null) {
       return;
     }
-
     if (error) {
       card.focus();
       return;
     }
-
     if (cardComplete) {
       setProcessing(true);
     }
-
     const payload = await stripe.createPaymentMethod({
       type: "card",
       card,
     });
-    if (payload.error) {
-      setError(payload.error);
-    } else {
-      setPaymentMethod(payload.paymentMethod);
-    }
-
     const { paymentIntent, error: confirmError } =
       await stripe.confirmCardPayment(clientSecret, {
         payment_method: {
@@ -164,10 +159,18 @@ const CheckoutForm = ({ price }) => {
           billing_details: billingDetails,
         },
       });
+    if (payload.error) {
+      setError(payload.error);
+    } else {
+      setPaymentMethod(payload.paymentMethod);
+    }
 
     if (confirmError) {
       setError(confirmError.message);
     }
+    setProcessing(false);
+
+    console.log(paymentIntent);
 
     if (paymentIntent.status === "succeeded") {
       setTransactionId(paymentIntent.id);
@@ -175,15 +178,18 @@ const CheckoutForm = ({ price }) => {
         email: user?.email,
         transactionId: paymentIntent.id,
         date: new Date(),
-        status: "service pending",
+        amount: price,
+        classesId: selectedClasses.map((item) => item.classId),
+        selectedClassesId: selectedClasses.map((item) => item._id),
+        className: selectedClasses.map((item) => item.className),
       };
       axiosSecure.post("/payments/", payment).then((response) => {
         if (response.data.insertedResult.insertedId) {
           toast.success("Payment Success!");
+          refetch();
         }
       });
     }
-    setProcessing(false);
   };
 
   const reset = () => {
@@ -263,8 +269,9 @@ const CheckoutForm = ({ price }) => {
           </span>
           <SubmitButton
             processing={processing}
+            clientSecret={clientSecret}
             error={error}
-            disabled={!stripe || !clientSecret}
+            disabled={!stripe}
           >
             ${price}
           </SubmitButton>

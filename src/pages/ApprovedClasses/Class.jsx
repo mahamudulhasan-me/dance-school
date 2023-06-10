@@ -4,9 +4,11 @@ import { toast } from "react-hot-toast";
 import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
+import useSelectedClass from "../../hooks/useSelectedClass";
 
 const Class = ({ classDetails }) => {
   const { user } = useAuth();
+  const [, refetch] = useSelectedClass();
   const navigate = useNavigate();
   const location = useLocation();
   const {
@@ -34,6 +36,7 @@ const Class = ({ classDetails }) => {
         .post("http://localhost:5000/selectClass", addedClassInfo)
         .then((res) => {
           if (res.data.insertedId) {
+            refetch();
             toast.success("Class added successfully");
           } else {
             toast.error("This class already selected");
@@ -72,6 +75,7 @@ const Class = ({ classDetails }) => {
           <span className="text-gray-500">Available Seat:</span>{" "}
           <span className="text-gray-800">{availableSeat}</span>{" "}
         </p>
+        <p>{enrolledStudent} student</p>
       </div>
       <div className="mt-3 flex justify-between items-center text-center text-white font-semibold text-lg">
         <p className="bg-slate-950 w-1/2 py-3 ">${price}</p>

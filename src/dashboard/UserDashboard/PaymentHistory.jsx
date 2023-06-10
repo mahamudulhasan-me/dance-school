@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import moment from "moment";
 import React from "react";
 import { Link } from "react-router-dom";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
@@ -6,16 +7,18 @@ import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import SectionHead from "../../pages/Shared/SectionHead/SectionHead";
 
-const EnrolledClasses = () => {
+const PaymentHistory = () => {
   const { user } = useAuth();
   const [axiosSecure] = useAxiosSecure();
-  const { data: enrolledClasses = [], isLoading } = useQuery({
-    queryKey: ["enrolled-classes", user?.email],
+  const { data: paymentHistory = [], isLoading } = useQuery({
+    queryKey: ["payment-history", user?.email],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/enrolled-classes/${user?.email}`);
+      const res = await axiosSecure.get(`/payment/${user?.email}`);
       return res.data;
     },
   });
+  const amount = paymentHistory.reduce((pre, cur) => pre + cur.amount, 0);
+  const totalAmount = parseFloat(amount.toFixed(2));
   return (
     <div>
       <SectionHead
@@ -23,20 +26,21 @@ const EnrolledClasses = () => {
       />
       <div className="overflow-x-auto bg-white p-5">
         <div className="flex pl-2 my-2  items-center justify-between bg-slate-300 font-semibold text-slate-950 ">
-          <p>Enrolled Classes: {enrolledClasses.length}</p>
+          <p>Total Payment: {paymentHistory.length}</p>
 
+          <p>Total Payment Amount: ${totalAmount}</p>
           <Link
             to={"/classes"}
             className="bg-primary w-32 font-normal text-white text-center py-2"
           >
-            Enroll Now
+            Add More Classes
           </Link>
         </div>
         {isLoading ? (
           <LoadingSpinner />
-        ) : enrolledClasses.length === 0 ? (
+        ) : paymentHistory.length === 0 ? (
           <p className="text-center text-warning font-semibold mt-5">
-            You have not enrolled!
+            No Payment Have Yet!
           </p>
         ) : (
           <table className="table table-zebra">
@@ -44,28 +48,25 @@ const EnrolledClasses = () => {
             <thead className="text-lg bg-slate-200 text-slate-950">
               <tr className="text-center">
                 <th></th>
-                <th>Image</th>
-                <th>Class Name</th>
-                <th>Available Seat</th>
-                <th>Price</th>
-                <th>Action</th>
+                <th>Transaction Id</th>
+                <th>Date</th>
+                <th>Amount</th>
               </tr>
             </thead>
 
             <tbody className="text-base text-center">
-              {enrolledClasses.map((myClass, index) => (
-                <tr key={myClass._id}>
+              {paymentHistory.map((payment, index) => (
+                <tr key={payment._id}>
                   <td>{index + 1}</td>
                   <td>
-                    <img
-                      src={myClass.classImage}
-                      alt=""
-                      className="w-20 h-16"
-                    />
+                    <span className="bg-success">{payment.transactionId}</span>{" "}
                   </td>
-                  <td> {myClass.className}</td>
-                  <td>{myClass.availableSeat}</td>
-                  <td>{myClass.price}</td>
+                  <td>
+                    {moment(payment.date).format(
+                      "dddd, MMMM Do YYYY, h:mm:ss a"
+                    )}
+                  </td>
+                  <td>${payment.amount}</td>
                 </tr>
               ))}
             </tbody>
@@ -76,4 +77,4 @@ const EnrolledClasses = () => {
   );
 };
 
-export default EnrolledClasses;
+export default PaymentHistory;
