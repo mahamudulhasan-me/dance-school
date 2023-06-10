@@ -119,7 +119,7 @@ const Class = ({ classDetails }) => {
             <span> {availableSeat} seats available</span>
           </p>
 
-          <p className="text-lg text-justify mt-1 mb-5">
+          <p className="text-lg font-normal leading-tight text-justify mt-1 mb-5">
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolor
             mollitia, ut qui cupiditate a ratione.
           </p>
