@@ -38,6 +38,7 @@ const AddClass = () => {
             availableSeat: parseInt(availableSeat),
             instructorName,
             instructorEmail,
+            instructorImage: user?.photoURL,
             price: parseFloat(price),
             enrolledStudent: parseInt(0),
             status,

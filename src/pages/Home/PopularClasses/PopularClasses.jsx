@@ -9,7 +9,7 @@ const PopularClasses = () => {
       style={{ backgroundImage: `url(${bg})` }}
       className=" min-h-screen bg-cover bg-white bg-blend-overlay bg-opacity-80"
     >
-      <div className="grid grid-cols-12 pl-5 mt-20 gap-8">
+      <div className="grid grid-cols-12 pl-5 mt-20 gap-6">
         <div className="col-span-8">
           <SectionHead title={"Popular Classes"} />
           <div>

@@ -11,7 +11,7 @@ const Header = () => {
   const handleLogOut = () => {
     logout()
       .then(() => toast.error("User Logout"))
-      .then((err) => toast.error(err.message));
+      .catch((err) => toast.error(err.message));
   };
   const naveItems = (
     <>

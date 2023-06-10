@@ -15,13 +15,13 @@ const ApprovedClasses = () => {
   });
   console.log(classes);
   return (
-    <div>
+    <div className="bg-violet-50 ">
       <PageTopBanner title="Classes" />
-      <div className="w-4/5 mx-auto">
+      <div className="w-4/5 mx-auto py-14">
         <SectionHead
           title={<span className="font-semibold">All Active Classes</span>}
         />
-        <div className="grid grid-cols-3 gap-10">
+        <div className="grid grid-cols-3 gap-8 ">
           {classes.map((item) => (
             <Class classDetails={item} key={item._id} />
           ))}
