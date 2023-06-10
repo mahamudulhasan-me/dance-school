@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import moment from "moment";
 import { Link } from "react-router-dom";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import useAuth from "../../hooks/useAuth";
@@ -16,6 +16,7 @@ const EnrolledClasses = () => {
       return res.data;
     },
   });
+  console.log(enrolledClasses);
   return (
     <div>
       <SectionHead
@@ -46,9 +47,9 @@ const EnrolledClasses = () => {
                 <th></th>
                 <th>Image</th>
                 <th>Class Name</th>
-                <th>Available Seat</th>
+                <th>Instructor</th>
                 <th>Price</th>
-                <th>Action</th>
+                <th>Purchase Date</th>
               </tr>
             </thead>
 
@@ -58,14 +59,19 @@ const EnrolledClasses = () => {
                   <td>{index + 1}</td>
                   <td>
                     <img
-                      src={myClass.classImage}
+                      src={myClass.classDetail.image}
                       alt=""
                       className="w-20 h-16"
                     />
                   </td>
-                  <td> {myClass.className}</td>
-                  <td>{myClass.availableSeat}</td>
-                  <td>{myClass.price}</td>
+                  <td> {myClass.classDetail.name}</td>
+                  <td>{myClass.classDetail.instructorName}</td>
+                  <td>{myClass.classDetail.price}</td>
+                  <td>
+                    {moment(myClass.paymentDate.date).format(
+                      "ddd, D MMMM YYYY"
+                    )}
+                  </td>
                 </tr>
               ))}
             </tbody>
