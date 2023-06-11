@@ -12,7 +12,7 @@ import logo from "../../../assets/images/icons/light-logo.webp";
 
 const Footer = () => {
   return (
-    <footer className="px-8 divide-y bg-violet-800 dark:bg-slate-950 text-gray-100">
+    <footer className="px-8 divide-y bg-violet-800 dark:bg-slate-900 text-gray-100">
       <div className="container grid grid-cols-4 justify-between py-10 mx-auto space-y-8  lg:space-y-0">
         <div className="text-gray-200 mr-4 space-y-4">
           <a

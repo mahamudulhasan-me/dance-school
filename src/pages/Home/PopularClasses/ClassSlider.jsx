@@ -57,7 +57,7 @@ const ClassSlider = () => {
                         (10 reviews)
                       </span>
                     </p>
-                    <FaRegBookmark size={24} />
+                    <FaRegBookmark size={24} className="dark:text-gray-200" />
                   </div>
                   <h1 className="text-2xl font-bold mt-4 text-slate-950 dark:text-slate-200">
                     {popularClass.name}

@@ -81,7 +81,9 @@ const Class = ({ classDetails }) => {
   return (
     <div
       className={`${
-        availableSeat === 0 ? "bg-rose-300" : "bg-gray-50"
+        availableSeat === 0
+          ? "bg-rose-300 dark:bg-rose-500"
+          : "bg-gray-50 dark:bg-slate-900"
       }  font-nunito font-semibold group hover:shadow-2xl mb-12`}
     >
       <div
@@ -96,12 +98,16 @@ const Class = ({ classDetails }) => {
               <FaStar />
               <FaStar />
               <FaStarHalf />
-              <span className="text-gray-600">(10 reviews)</span>
+              <span className="text-gray-600 dark:text-gray-400">
+                (10 reviews)
+              </span>
             </p>
-            <FaRegBookmark size={24} />
+            <FaRegBookmark size={24} className="dark:text-gray-200" />
           </div>
-          <h1 className="text-2xl font-bold mt-4 text-slate-950">{name}</h1>
-          <div className="text-gray-600">
+          <h1 className="text-2xl font-bold mt-4 text-slate-950 dark:text-slate-200">
+            {name}
+          </h1>
+          <div className="text-gray-600 dark:text-gray-400">
             <div className="flex gap-4 items-center  text-sm font-bold">
               {/* <p className="flex  items-center  gap-1">
                       <IoMdStopwatch /> 26 Hours
@@ -132,7 +138,7 @@ const Class = ({ classDetails }) => {
               />
               <p>
                 by{" "}
-                <span className="text-gray-900 font-semibold">
+                <span className="text-gray-900 dark:text-slate-200 font-semibold">
                   {instructorName}
                 </span>
               </p>

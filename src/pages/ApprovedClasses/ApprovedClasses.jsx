@@ -15,7 +15,7 @@ const ApprovedClasses = () => {
   });
   console.log(classes);
   return (
-    <div className="bg-violet-50 ">
+    <div className="bg-violet-50 dark:bg-slate-800">
       <PageTopBanner title="Classes" />
       <div className="w-4/5 mx-auto py-14">
         <SectionHead

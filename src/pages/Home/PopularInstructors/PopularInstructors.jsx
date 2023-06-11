@@ -26,7 +26,7 @@ const PopularInstructors = () => {
   });
   return (
     <>
-      <div className="grid grid-cols-12 px-5 py-10 bg-rose-50 dark:bg-slate-900">
+      <div className="grid grid-cols-12 px-5 py-10 bg-rose-50 dark:bg-slate-800">
         <div className="col-span-5 ">
           <img src={training} alt="" />
 
@@ -79,7 +79,7 @@ const PopularInstructors = () => {
             {instructors.map((instructor) => (
               <div
                 key={instructor._id}
-                className="mt-2 hover:mt-0 duration-300 hover:mb-2 group  dark:border-transparent dark:border-[#e2e8f0] px-3 pt-3 rounded-md group bg-white  dark:bg-slate-950"
+                className="mt-2 hover:mt-0 duration-300 hover:mb-2 group  dark:border-transparent dark:border-[#e2e8f0] px-3 pt-3 rounded-md group bg-white  dark:bg-slate-900"
               >
                 <div className="relative overflow-hidden ">
                   <img
