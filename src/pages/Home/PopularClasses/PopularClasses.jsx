@@ -7,7 +7,7 @@ const PopularClasses = () => {
   return (
     <div
       style={{ backgroundImage: `url(${bg})` }}
-      className=" min-h-screen bg-cover bg-white bg-blend-overlay bg-opacity-70"
+      className=" min-h-screen bg-cover bg-white dark:bg-slate-900 bg-blend-overlay bg-opacity-70"
     >
       <div className="grid grid-cols-12 pl-5 mt-20 gap-6">
         <div className="col-span-8">

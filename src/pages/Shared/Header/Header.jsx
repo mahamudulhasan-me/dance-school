@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
+import { BsFillSunFill } from "react-icons/bs";
 import { FaOpencart } from "react-icons/fa";
+import { HiMoon } from "react-icons/hi";
 import { Link } from "react-router-dom";
 import logo from "../../../assets/images/dance-logo.png";
 import useAuth from "../../../hooks/useAuth";
@@ -8,11 +10,34 @@ import useSelectedClass from "../../../hooks/useSelectedClass";
 const Header = () => {
   const { user, logout } = useAuth();
   const [selectedClasses] = useSelectedClass();
+
   const handleLogOut = () => {
     logout()
       .then(() => toast.error("User Logout"))
       .catch((err) => toast.error(err.message));
   };
+  // use theme from local storage if available or set light theme
+  const [theme, setTheme] = useState(
+    localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
+  );
+
+  // update state on toggle
+  const handleToggle = (e) => {
+    if (e.target.checked) {
+      setTheme("night");
+    } else {
+      setTheme("light");
+    }
+  };
+
+  // set theme state in localstorage on mount & also update localstorage on state change
+  useEffect(() => {
+    localStorage.setItem("theme", theme);
+    const localTheme = localStorage.getItem("theme");
+    // add custom data-theme attribute to html tag required to update theme using DaisyUI
+    document.querySelector("html").setAttribute("data-theme", localTheme);
+  }, [theme]);
+
   const naveItems = (
     <>
       <Link to={"/"}>
@@ -39,6 +64,15 @@ const Header = () => {
           {selectedClasses?.length}
         </p>
       </Link>
+      <button onClick={handleToggle} className="">
+        <label className="swap swap-rotate w-12 h-12">
+          <input type="checkbox" />
+          {/* light theme sun image */}
+          <BsFillSunFill className="w-7 h-7 swap-on text-orange-500" />
+          {/* dark theme moon image */}
+          <HiMoon className="w-7 h-7 swap-off text-white" />
+        </label>
+      </button>
       {user ? (
         <>
           <div className="w-10 h-10 rounded-full ring ring-violet-700 mx-2">
