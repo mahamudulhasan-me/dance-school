@@ -39,7 +39,7 @@ const ClassSlider = () => {
             <div
               className={`${
                 popularClass.availableSeat === 0 ? "bg-rose-300" : "bg-gray-50"
-              }  font-nunito font-semibold group hover:shadow-2xl mb-12`}
+              }  font-nunito font-semibold group hover:shadow-2xl mb-12 rounded-md dark:bg-slate-900 dark:bg-opacity-60`}
             >
               <div
                 className={` px-4 pt-4 group-hover:scale-105 duration-300  rounded-lg`}
@@ -53,19 +53,21 @@ const ClassSlider = () => {
                       <FaStar />
                       <FaStar />
                       <FaStarHalf />
-                      <span className="text-gray-600">(10 reviews)</span>
+                      <span className="text-gray-600 dark:text-gray-400">
+                        (10 reviews)
+                      </span>
                     </p>
                     <FaRegBookmark size={24} />
                   </div>
-                  <h1 className="text-2xl font-bold mt-4 text-slate-950">
+                  <h1 className="text-2xl font-bold mt-4 text-slate-950 dark:text-slate-200">
                     {popularClass.name}
                   </h1>
-                  <div className="text-gray-600">
-                    <div className="flex justify-between items-center gap-4 text-sm font-bold">
+                  <div className="text-gray-600 dark:text-gray-400">
+                    <div className="flex justify-between items-center gap-4 dark:text-gray-400 text-sm font-bold">
                       {/* <p className="flex  items-center  gap-1">
                       <IoMdStopwatch /> 26 Hours
                     </p> */}
-                      <p className="flex  items-center gap-1">
+                      <p className="flex items-center gap-1">
                         <FaUsers />
                         <span> {popularClass.enrolledStudent} Students</span>
                       </p>
@@ -96,7 +98,7 @@ const ClassSlider = () => {
                       />
                       <p>
                         by{" "}
-                        <span className="text-gray-900 font-semibold">
+                        <span className="text-gray-900 dark:text-gray-200 font-semibold">
                           {popularClass.instructorName}
                         </span>
                       </p>

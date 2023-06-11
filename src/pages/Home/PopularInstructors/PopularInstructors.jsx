@@ -26,12 +26,12 @@ const PopularInstructors = () => {
   });
   return (
     <>
-      <div className="grid grid-cols-12 px-5">
-        <div className="col-span-5">
+      <div className="grid grid-cols-12 px-5 py-10 bg-rose-50 dark:bg-slate-900">
+        <div className="col-span-5 ">
           <img src={training} alt="" />
 
           <div className="ml-5 mr-2 ">
-            <p className="font-nunito text-xl mb-8 text-gray-600 tracking-widest  font-semibold">
+            <p className="font-nunito text-xl mb-8 text-gray-600 dark:text-gray-200 tracking-widest  font-semibold">
               Training the dancers goes on in our Academy on a regular basis.
               You can enroll for a part-time or full-time program.
             </p>
@@ -79,15 +79,15 @@ const PopularInstructors = () => {
             {instructors.map((instructor) => (
               <div
                 key={instructor._id}
-                className="mt-2 hover:mt-0 duration-300 hover:mb-2 group  border px-3 pt-3 rounded-md group"
+                className="mt-2 hover:mt-0 duration-300 hover:mb-2 group  dark:border-transparent dark:border-[#e2e8f0] px-3 pt-3 rounded-md group bg-white  dark:bg-slate-950"
               >
                 <div className="relative overflow-hidden ">
                   <img
                     src={instructor.photoUrl}
                     alt=""
-                    className="rounded-md group-hover:scale-110 duration-700"
+                    className="rounded-md group-hover:scale-110 duration-700 "
                   />
-                  <div className="absolute bg-violet-700 hidden group-hover:flex top-0 right-0 bottom-0 left-0 bg-opacity-70 rounded-md duration-1000 ease-in justify-evenly items-center gap-1 text-2xl text-white">
+                  <div className="absolute bg-violet-700 hidden group-hover:flex top-0 right-0 bottom-0 left-0 bg-opacity-70 duration-1000 ease-in justify-evenly items-center gap-1 text-2xl text-white">
                     <Link>
                       <FaFacebook />
                     </Link>
@@ -104,11 +104,13 @@ const PopularInstructors = () => {
                 </div>
                 <div className="font-nunito">
                   <div className="border-l-4 border-violet-700 group-hover:border-rose-600 duration-200 pl-1 rounded-l-md mt-5">
-                    <p className="font-bold text-xl">{instructor.name}</p>
-                    <p className="text-sm font-semibold text-gray-500">
+                    <p className="font-bold text-xl dark:text-slate-200">
+                      {instructor.name}
+                    </p>
+                    <p className="text-sm font-semibold text-gray-500 dark:text-gray-400">
                       Dancer/Instructor
                     </p>
-                    <p className=" font-semibold text-gray-500">
+                    <p className=" font-semibold text-gray-500 dark:text-gray-400">
                       <span>Classes: {instructor.totalClasses}</span>{" "}
                       <span>Students: {instructor.totalEnrollmentStudent}</span>
                     </p>

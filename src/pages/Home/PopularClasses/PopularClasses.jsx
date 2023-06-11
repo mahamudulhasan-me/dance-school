@@ -7,7 +7,7 @@ const PopularClasses = () => {
   return (
     <div
       style={{ backgroundImage: `url(${bg})` }}
-      className=" min-h-screen bg-cover bg-white dark:bg-slate-900 bg-blend-overlay bg-opacity-70"
+      className=" min-h-screen pt-3 pb-10 bg-cover bg-white dark:bg-slate-900 bg-blend-overlay bg-opacity-70"
     >
       <div className="grid grid-cols-12 pl-5 mt-20 gap-6">
         <div className="col-span-8">
@@ -16,7 +16,7 @@ const PopularClasses = () => {
             <ClassSlider />
           </div>
         </div>
-        <div className="col-span-4 pr-20">
+        <div className="col-span-4 pr-20 ">
           <SectionHead title={"Opening Hours"} />
           <div className="space-y-5">
             <OpeningDayTime day="Saturday" time="8am-10pm" />

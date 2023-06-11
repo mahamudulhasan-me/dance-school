@@ -24,19 +24,43 @@ const Header = () => {
   // update state on toggle
   const handleToggle = (e) => {
     if (e.target.checked) {
-      setTheme("night");
+      setTheme("dark");
+      localStorage.setItem("theme", "dark");
     } else {
       setTheme("light");
+      localStorage.setItem("theme", "light");
     }
   };
-
-  // set theme state in localstorage on mount & also update localstorage on state change
   useEffect(() => {
-    localStorage.setItem("theme", theme);
-    const localTheme = localStorage.getItem("theme");
-    // add custom data-theme attribute to html tag required to update theme using DaisyUI
-    document.querySelector("html").setAttribute("data-theme", localTheme);
+    if (
+      localStorage.theme === "dark" ||
+      (!("theme" in localStorage) &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches)
+    ) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+
+    // Whenever the user explicitly chooses light mode
+    localStorage.theme = "light";
+
+    // Whenever the user explicitly chooses dark mode
+    localStorage.theme = "dark";
+
+    // Whenever the user explicitly chooses to respect the OS preference
+    localStorage.removeItem("theme");
+  }, []);
+
+  useEffect(() => {
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
   }, [theme]);
+
+  // On page load or when changing themes, best to add inline in `head` to avoid FOUC
 
   const naveItems = (
     <>
