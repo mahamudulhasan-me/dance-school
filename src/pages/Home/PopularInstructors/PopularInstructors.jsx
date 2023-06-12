@@ -36,7 +36,7 @@ const PopularInstructors = () => {
         <div className="col-span-7 mt-12">
           <SectionHead title={"Popular Instructor"} />
           <div className="md:grid grid-cols-3 gap-6 -mt-4 items-end">
-            {instructors.map((instructor) => (
+            {instructors.slice(0, 6).map((instructor) => (
               <div
                 data-aos="zoom-in"
                 key={instructor._id}

@@ -71,7 +71,7 @@ const Class = ({ classDetails }) => {
         confirmButtonText: "Yes, Login!",
       }).then((result) => {
         if (result.isConfirmed) {
-          navigate("/login", { from: { state: location } }, { replace: true });
+          navigate("/login", { state: location }, { replace: true });
         }
       });
     }
@@ -79,6 +79,7 @@ const Class = ({ classDetails }) => {
 
   return (
     <div
+      data-aos="zoom-in"
       className={`${
         availableSeat === 0
           ? "bg-rose-300 dark:bg-rose-500"

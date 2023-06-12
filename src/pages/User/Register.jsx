@@ -8,7 +8,7 @@ import { FidgetSpinner } from "react-loader-spinner";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 
-const Register = ({ signUp, setSignUp }) => {
+const Register = ({ signUp, setSignUp, path }) => {
   // auth hook
   const { createNewUser } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
@@ -76,7 +76,7 @@ const Register = ({ signUp, setSignUp }) => {
               .then((res) => {
                 if (res.data.insertedId) {
                   toast.success(`User Create Successfully`);
-                  navigate("/");
+                  navigate(path);
                   setLoading(false);
                 }
               });
@@ -97,7 +97,10 @@ const Register = ({ signUp, setSignUp }) => {
       <Helmet>
         <title>Register | Dance School</title>
       </Helmet>
-      <div className=" md:w-[31%] w-[95%] rounded-lg  mx-auto bg-violet-50 p-10 mt-20">
+      <div
+        data-aos="fade-left"
+        className=" md:w-[31%] w-[95%] rounded-lg  mx-auto bg-white p-10 mt-20"
+      >
         <h1 className="text-center text-2xl text-slate-900 font-semibold my-2">
           SignUp for free
         </h1>

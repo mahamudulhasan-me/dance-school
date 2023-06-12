@@ -1,9 +1,11 @@
-import { Navigate } from "react-router";
+import { Navigate, useLocation } from "react-router";
 import LoadingSpinner2 from "../components/LoadingSpinner/LoadingSpinner2";
 import useAuth from "../hooks/useAuth";
 
 const ProtectedRoute = ({ children }) => {
   const { user, loading } = useAuth();
+
+  const location = useLocation();
 
   if (loading) {
     return <LoadingSpinner2 />;

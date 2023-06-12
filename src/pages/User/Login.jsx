@@ -11,7 +11,7 @@ import {
   FaTwitter,
 } from "react-icons/fa";
 import { FidgetSpinner } from "react-loader-spinner";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import banner from "../../assets/images/banner/dance-img.jpg";
 import useAuth from "../../hooks/useAuth";
 import Register from "./Register";
@@ -22,6 +22,9 @@ const Login = () => {
   const { logInWithGoogle, logInWithEmailPassword } = useAuth();
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const path = location?.state?.pathname || "/";
 
   // handle google signin
   const handleGoogleSignIn = () => {
@@ -47,7 +50,7 @@ const Login = () => {
           )
           .then((res) => {
             if (res.data.insertedId) {
-              navigate("/");
+              navigate(path);
               toast.success("User Create Successfully");
               setLoading(false);
             }
@@ -63,7 +66,7 @@ const Login = () => {
   const onSubmit = (data) => {
     logInWithEmailPassword(data.email, data.password)
       .then((result) => {
-        navigate("/");
+        navigate(path);
         toast.success(`Welcome ${result.user?.displayName}`);
       })
       .catch((err) => toast.error(err.message));
@@ -77,10 +80,13 @@ const Login = () => {
       </Helmet>
       <div
         style={{ backgroundImage: `url(${banner})` }}
-        className="bg-cover bg-violet-900 bg-blend-overlay min-h-screen flex flex-col justify-center items-center bg-opacity-30 py-10"
+        className="bg-cover bg-slate-600 bg-blend-overlay min-h-screen flex flex-col justify-center items-center  dark:bg-slate-900 py-10"
       >
         {!signUp ? (
-          <div className=" md:w-[31%] rounded-lg mx-auto bg-violet-50 p-10 mt-20">
+          <div
+            data-aos="zoom-in"
+            className=" md:w-[31%] rounded-lg mx-auto bg-white p-10 mt-20"
+          >
             <h1 className="text-center text-2xl text-slate-900 font-semibold my-2">
               Login to your account
             </h1>
@@ -173,7 +179,7 @@ const Login = () => {
             </form>
           </div>
         ) : (
-          <Register signUp={signUp} setSignUp={setSignUp} />
+          <Register path={path} signUp={signUp} setSignUp={setSignUp} />
         )}
       </div>
     </>

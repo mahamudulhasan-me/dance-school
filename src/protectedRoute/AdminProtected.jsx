@@ -1,8 +1,7 @@
-import { Navigate, useLocation } from "react-router";
-import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
+import { Navigate } from "react-router";
+import LoadingSpinner2 from "../components/LoadingSpinner/LoadingSpinner2";
 import useAdmin from "../hooks/useAdmin";
 import useAuth from "../hooks/useAuth";
-import LoadingSpinner2 from "../components/LoadingSpinner/LoadingSpinner2";
 
 const AdminProtected = ({ children }) => {
   const { user, loading } = useAuth();

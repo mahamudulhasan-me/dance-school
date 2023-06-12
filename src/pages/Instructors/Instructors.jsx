@@ -39,6 +39,7 @@ const Instructors = () => {
           <div className="md:grid grid-cols-4 gap-7">
             {instructors.map((instructor) => (
               <div
+                data-aos="zoom-in"
                 key={instructor._id}
                 className="mt-2 hover:mt-0 mb-8 md:mb-0 duration-300 md:hover:mb-2 group border  dark:border-transparent dark:border-[#e2e8f0] px-3 pt-3 rounded-md group bg-white  dark:bg-slate-900 flex flex-col  justify-between"
               >

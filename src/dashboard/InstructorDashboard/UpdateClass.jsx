@@ -19,7 +19,6 @@ const UpdateClass = () => {
     },
   });
 
-  console.log(singleClass);
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
