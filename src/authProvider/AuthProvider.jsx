@@ -45,7 +45,9 @@ const AuthProvider = ({ children }) => {
       setUser(currentUser);
       if (currentUser) {
         axios
-          .post(`http://localhost:5000/jwt`, { email: currentUser?.email })
+          .post(`https://dance-school-server-roan.vercel.app/jwt`, {
+            email: currentUser?.email,
+          })
           .then((res) => {
             localStorage.setItem("access-token", res.data);
             console.log(res.data);

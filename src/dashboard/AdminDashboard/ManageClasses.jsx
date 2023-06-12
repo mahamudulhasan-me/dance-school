@@ -38,10 +38,13 @@ const ManageClasses = () => {
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/classes/admin/${id}`, {
-          method: "PATCH",
-          headers: { status: "approve" },
-        })
+        fetch(
+          `https://dance-school-server-roan.vercel.app/classes/admin/${id}`,
+          {
+            method: "PATCH",
+            headers: { status: "approve" },
+          }
+        )
           .then((response) => response.json())
           .then((data) => {
             if (data.modifiedCount > 0) {
@@ -65,10 +68,13 @@ const ManageClasses = () => {
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/classes/admin/${id}`, {
-          method: "PATCH",
-          headers: { status: "deny" },
-        })
+        fetch(
+          `https://dance-school-server-roan.vercel.app/classes/admin/${id}`,
+          {
+            method: "PATCH",
+            headers: { status: "deny" },
+          }
+        )
           .then((response) => response.json())
           .then((data) => {
             if (data.modifiedCount > 0) {
@@ -95,11 +101,14 @@ const ManageClasses = () => {
     });
 
     if (text) {
-      fetch(`http://localhost:5000/classes/feedback/admin/${id}`, {
-        method: "PATCH",
+      fetch(
+        `https://dance-school-server-roan.vercel.app/classes/feedback/admin/${id}`,
+        {
+          method: "PATCH",
 
-        headers: { feedback: text },
-      })
+          headers: { feedback: text },
+        }
+      )
         .then((response) => response.json())
         .then((data) => {
           if (data.modifiedCount > 0) {

@@ -68,7 +68,10 @@ const Register = ({ signUp, setSignUp }) => {
               uid: user.uid,
             };
             axios
-              .post(`http://localhost:5000/newUsers`, userInfo)
+              .post(
+                `https://dance-school-server-roan.vercel.app/newUsers`,
+                userInfo
+              )
               .then((res) => {
                 if (res.data.insertedId) {
                   toast.success(`User Create Successfully`);

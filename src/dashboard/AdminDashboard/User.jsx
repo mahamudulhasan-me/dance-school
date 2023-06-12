@@ -38,10 +38,13 @@ const User = ({ user, index, refetch, loading }) => {
       /* Read more about isConfirmed, isDenied below */
       const role = e.target.value;
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/users/admin/${_id}`, {
-          method: "PATCH",
-          headers: { role },
-        })
+        fetch(
+          `https://dance-school-server-roan.vercel.app/users/admin/${_id}`,
+          {
+            method: "PATCH",
+            headers: { role },
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             if (data.modifiedCount > 0) {

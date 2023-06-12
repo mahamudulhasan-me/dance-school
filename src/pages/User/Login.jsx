@@ -37,12 +37,17 @@ const Login = () => {
         };
         toast.success(`Welcome ${displayName}`);
         navigate("/");
-        axios.post(`http://localhost:5000/newUsers`, userInfo).then((res) => {
-          if (res.data.insertedId) {
-            navigate("/");
-            toast.success("User Create Successfully");
-          }
-        });
+        axios
+          .post(
+            `https://dance-school-server-roan.vercel.app/newUsers`,
+            userInfo
+          )
+          .then((res) => {
+            if (res.data.insertedId) {
+              navigate("/");
+              toast.success("User Create Successfully");
+            }
+          });
       })
       .catch((err) => toast.error(err.message));
   };

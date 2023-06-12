@@ -18,7 +18,9 @@ const ClassSlider = () => {
   const { data: popularClasses = [] } = useQuery({
     queryKey: ["popular-classes"],
     queryFn: async () => {
-      const res = await axios.get(`http://localhost:5000/popular-classes`);
+      const res = await axios.get(
+        `https://dance-school-server-roan.vercel.app/popular-classes`
+      );
       return res.data;
     },
   });

@@ -12,7 +12,9 @@ const PopularInstructors = () => {
   const { data: instructors = [] } = useQuery({
     queryKey: ["all-instructors"],
     queryFn: async () => {
-      const res = await axios.get("http://localhost:5000/instructor");
+      const res = await axios.get(
+        "https://dance-school-server-roan.vercel.app/instructor"
+      );
       return res.data;
     },
   });
