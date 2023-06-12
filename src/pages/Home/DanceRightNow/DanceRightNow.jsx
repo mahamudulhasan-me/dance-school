@@ -8,7 +8,10 @@ import SectionHead from "../../Shared/SectionHead/SectionHead";
 const DanceRightNow = () => {
   return (
     <div className="pl-[10%] pr-[5%] grid grid-cols-12 gap-8 py-10 dark:bg-slate-900">
-      <img src={danceGirl} alt="" className="col-span-5" />
+      <div data-aos="fade-right" className="col-span-5">
+        <img src={danceGirl} alt="" />
+      </div>
+
       <div className="col-span-7 mt-24">
         <SectionHead
           title={
@@ -27,7 +30,7 @@ const DanceRightNow = () => {
           client
         </p>
         <div className="grid grid-cols-2 mt-10 gap-5 ">
-          <div className="space-y-3 group">
+          <div className="space-y-3 group" data-aos="fade-down">
             <img
               src={danceIcon1}
               alt=""
@@ -42,7 +45,7 @@ const DanceRightNow = () => {
               mailing. such founders
             </p>
           </div>
-          <div className="space-y-3 group">
+          <div className="space-y-3 group" data-aos="fade-down">
             <img
               src={danceIcon2}
               alt=""
@@ -57,7 +60,7 @@ const DanceRightNow = () => {
               mailing. such founders
             </p>
           </div>
-          <div className="space-y-3 group">
+          <div className="space-y-3 group" data-aos="fade-down">
             <img
               src={danceIcon3}
               alt=""
@@ -72,7 +75,7 @@ const DanceRightNow = () => {
               mailing. such founders
             </p>
           </div>
-          <div className="space-y-3 group">
+          <div className="space-y-3 group" data-aos="fade-down">
             <img
               src={danceIcon4}
               alt=""

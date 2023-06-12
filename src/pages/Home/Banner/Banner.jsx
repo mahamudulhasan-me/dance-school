@@ -25,7 +25,10 @@ const Banner = () => {
             ></div>
             <div className="absolute top-1/4 px-[10%]">
               <h3 className="text-white  text-4xl">Be in the</h3>
-              <h1 className="font-extrabold text-transparent text-8xl bg-clip-text bg-gradient-to-r from-violet-600 to-pink-600 uppercase">
+              <h1
+                data-aos="flip-left"
+                className="font-extrabold text-transparent text-8xl bg-clip-text bg-gradient-to-r from-violet-600 to-pink-600 uppercase"
+              >
                 SpotLight
               </h1>
               <p className="text-white italic text-lg font-nunito -mt-4 tracking-[0.2rem]">
@@ -74,8 +77,12 @@ const Banner = () => {
                 </h5>
               </div>
               <div className="flex gap-8 mt-8">
-                <button className="my-btn1">Out service</button>
-                <button className="my-btn2">Get a quote</button>
+                <button data-aos="zoom-out-right" className="my-btn1">
+                  Out service
+                </button>
+                <button data-aos="zoom-out-up" className="my-btn2">
+                  Get a quote
+                </button>
               </div>
             </div>
           </div>
@@ -90,12 +97,20 @@ const Banner = () => {
               <p className="text-4xl font-semibold mb-5">
                 Create The Best Movies for You
               </p>
-              <h1 className="text-9xl font-bold uppercase">
+              <h1
+                data-aos="flip-up"
+                data-aos-duration="2000"
+                className="text-9xl font-bold uppercase"
+              >
                 Dance To The Beat
               </h1>
               <div className="flex gap-8 justify-center items-center mt-8">
-                <button className="my-btn1">Out service</button>
-                <button className="my-btn2">Get a quote</button>
+                <button data-aos="zoom-out-up" className="my-btn1">
+                  Out service
+                </button>
+                <button data-aos="zoom-out-up" className="my-btn2">
+                  Get a quote
+                </button>
               </div>
             </div>
           </div>

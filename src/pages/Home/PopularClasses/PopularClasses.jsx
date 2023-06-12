@@ -12,13 +12,13 @@ const PopularClasses = () => {
       <div className="grid grid-cols-12 pl-5 mt-20 gap-6">
         <div className="col-span-8">
           <SectionHead title={"Popular Classes"} />
-          <div>
+          <div data-aos="fade-right">
             <ClassSlider />
           </div>
         </div>
         <div className="col-span-4 pr-20 ">
           <SectionHead title={"Opening Hours"} />
-          <div className="space-y-5">
+          <div className="space-y-5" data-aos="fade-left">
             <OpeningDayTime day="Saturday" time="8am-10pm" />
             <OpeningDayTime day="Sunday" time="8am-10pm" />
             <OpeningDayTime day="Monday" time="8am-10pm" />

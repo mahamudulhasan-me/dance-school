@@ -28,9 +28,9 @@ const PopularInstructors = () => {
     <>
       <div className="grid grid-cols-12 px-5 py-10 bg-rose-50 dark:bg-slate-800">
         <div className="col-span-5 ">
-          <img src={training} alt="" />
+          <img src={training} alt="" data-aos="fade-right" />
 
-          <div className="ml-5 mr-2 ">
+          <div className="ml-5 mr-2" data-aos="fade-right">
             <p className="font-nunito text-xl mb-8 text-gray-600 dark:text-gray-200 tracking-widest  font-semibold">
               Training the dancers goes on in our Academy on a regular basis.
               You can enroll for a part-time or full-time program.
@@ -78,6 +78,7 @@ const PopularInstructors = () => {
           <div className=" grid grid-cols-3 gap-6 -mt-4 items-end">
             {instructors.map((instructor) => (
               <div
+                data-aos="zoom-in"
                 key={instructor._id}
                 className="mt-2 hover:mt-0 duration-300 hover:mb-2 group  dark:border-transparent dark:border-[#e2e8f0] px-3 pt-3 rounded-md group bg-white  dark:bg-slate-900"
               >

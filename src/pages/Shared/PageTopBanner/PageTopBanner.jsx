@@ -9,7 +9,10 @@ const PageTopBanner = ({ title }) => {
       className="h-[calc(100vh-50vh)] flex justify-center items-center bg-cover bg-slate-950 bg-blend-overlay bg-opacity-60"
     >
       <div className="flex flex-col justify-center items-center">
-        <h1 className="font-bold text-transparent text-6xl bg-clip-text bg-gradient-to-t from-violet-500 to-pink-600 uppercase">
+        <h1
+          data-aos="flip-left"
+          className="font-bold text-transparent text-6xl bg-clip-text bg-gradient-to-t from-violet-500 to-pink-600 uppercase"
+        >
           {title}
         </h1>
         <div className=" breadcrumbs text-gray-300">
