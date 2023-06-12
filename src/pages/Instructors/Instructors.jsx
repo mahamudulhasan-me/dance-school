@@ -93,7 +93,7 @@ const Instructors = () => {
                       {instructor.email}
                     </p>
                   </div>
-                  <div className="bg-violet-600 py-1 -mx-3 rounded-b-md border-b-2 border-rose-600 text-center text-white font-semibold pt-1 mt-2">
+                  <div className="bg-violet-600 py-1 -mx-3 rounded-b-md border-b-2 border-rose-600 text-center text-white font-semibold pt-1 mt-2 cursor-pointer">
                     See Classes
                   </div>
                 </div>

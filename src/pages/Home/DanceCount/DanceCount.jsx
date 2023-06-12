@@ -35,7 +35,7 @@ const DanceCount = () => {
           <img src={icon2} alt="" className="mx-auto" />
           <div>
             <h1 className="font-semibold text-4xl my-4 dark:text-slate-200 ">
-              <CountUp enableScrollSpy={true} delay={2000} end={1920} />
+              <CountUp enableScrollSpy={true} delay={8000} end={1920} />
             </h1>
             <div className=" w-16 h-1 group-hover:w-24 duration-300 bg-gradient-to-r from-violet-600 to-rose-600"></div>
           </div>
@@ -54,7 +54,7 @@ const DanceCount = () => {
           <img src={icon3} alt="" className="mx-auto" />
           <div>
             <h1 className="font-semibold text-4xl my-4 dark:text-slate-200 ">
-              <CountUp enableScrollSpy={true} delay={2000} end={2331} />
+              <CountUp enableScrollSpy={true} delay={8000} end={2331} />
             </h1>
             <div className=" w-16 h-1 group-hover:w-24 duration-300 bg-gradient-to-r from-violet-600 to-rose-600"></div>
           </div>
@@ -73,7 +73,7 @@ const DanceCount = () => {
         <img src={icon4} alt="" className="mx-auto" />
         <div>
           <h1 className="font-semibold text-4xl my-4 dark:text-slate-200 ">
-            <CountUp enableScrollSpy={true} delay={2000} end={1122} />
+            <CountUp enableScrollSpy={true} delay={8000} end={1122} />
           </h1>
           <div className="mx-auto w-16 h-1 group-hover:w-24 duration-300 bg-gradient-to-r from-violet-600 to-rose-600"></div>
         </div>
