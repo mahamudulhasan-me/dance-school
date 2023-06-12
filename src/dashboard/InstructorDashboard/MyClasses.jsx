@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { FaEdit } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
@@ -67,7 +68,11 @@ const MyClasses = () => {
                     </td>
                     <td>{myClass?.feedback ? myClass?.feedback : "N/A"}</td>
                     <td>
-                      <FaEdit size={24} className="text-violet-700" />
+                      <Link
+                        to={`/dashboard/instructor/update-class/${myClass._id}`}
+                      >
+                        <FaEdit size={24} className="text-violet-700" />
+                      </Link>
                     </td>
                   </tr>
                 ))}

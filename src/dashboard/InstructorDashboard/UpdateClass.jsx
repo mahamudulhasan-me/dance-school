@@ -1,73 +1,66 @@
+import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import SectionHead from "../../pages/Shared/SectionHead/SectionHead";
 
-const AddClass = () => {
+const UpdateClass = () => {
+  const { id } = useParams();
   const { user } = useAuth();
-  const { register, handleSubmit } = useForm();
   const [axiosSecure] = useAxiosSecure();
+  const { data: singleClass = {} } = useQuery({
+    queryKey: ["single-class", id],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/class/${id}`);
+      return res.data;
+    },
+  });
 
+  console.log(singleClass);
+  const navigate = useNavigate();
+  const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
-    data.status = "pending";
-    const {
-      name,
-      image,
-      availableSeat,
-      instructorName,
-      instructorEmail,
-      price,
-      status,
-    } = data;
-
-    // TODO: imagebb url can be hold on .env
-    const imgbbURL = `https://api.imgbb.com/1/upload?key=2d2ae9c5dd9e1059fbd193b5ec64e3fe`;
-    let formData = new FormData();
-    formData.append("image", image[0]);
-
-    fetch(imgbbURL, { method: "POST", body: formData })
-      .then((res) => res.json())
-      .then((result) => {
-        if (result.success) {
-          const updatedClass = {
-            name,
-            image: result.data.display_url,
-            availableSeat: parseInt(availableSeat),
-            instructorName,
-            instructorEmail,
-            instructorImage: user?.photoURL,
-            price: parseFloat(price),
-            enrolledStudent: parseInt(0),
-            status,
-          };
-          axiosSecure.post("/addClass", updatedClass).then((res) => {
-            if (res.data.insertedId) {
-              Swal.fire(
-                "Class Added Successfully!",
-                "You clicked the button!",
-                "success"
-              );
-            }
-          });
-        }
-      });
+    const updatedInfo = {
+      name: data.name,
+      availableSeat: parseInt(data.availableSeat),
+      price: parseFloat(data.price),
+    };
+    axiosSecure.patch(`/update-class/${id}`, updatedInfo).then((res) => {
+      if (res.data.modifiedCount > 0) {
+        Swal.fire(
+          "Class Updated Successfully!",
+          "You clicked the button!",
+          "success"
+        );
+        navigate("/dashboard/instructor/my-class");
+      }
+    });
   };
+
   return (
     <div>
-      <SectionHead title="Add a New Class" />
+      <SectionHead title={"Update Class"} />
       <form onSubmit={handleSubmit(onSubmit)} className="mt-5 bg-white p-5">
         <div className="md:grid grid-cols-2 gap-3 mb-5 items-center">
           <div>
             <label className="text-sm">Class Name</label> <br />
-            <input required {...register("name")} className="add_class-input" />
+            <input
+              defaultValue={singleClass?.name}
+              required
+              {...register("name")}
+              className="add_class-input"
+            />
           </div>
 
           <div>
             <label className="text-sm">Image</label> <br />
             <input
+              disabled
               type="file"
+              defaultValue={singleClass.image}
               required
               {...register("image")}
               className=" file-input  file-input-md file-input-bordered w-full bg-[#E9EDF4]"
@@ -78,9 +71,8 @@ const AddClass = () => {
             <label className="text-sm">Instructor</label> <br />
             <input
               required
-              readOnly
-              value={user?.displayName}
-              defaultValue={user?.displayName}
+              disabled
+              defaultValue={singleClass?.instructorName}
               {...register("instructorName")}
               className="add_class-input"
             />
@@ -89,9 +81,8 @@ const AddClass = () => {
             <label className="text-sm">Instructor Email</label> <br />
             <input
               required
-              readOnly
-              value={user?.email}
-              defaultValue={user?.email}
+              disabled
+              defaultValue={singleClass?.instructorEmail}
               {...register("instructorEmail")}
               className="add_class-input"
             />
@@ -107,6 +98,7 @@ const AddClass = () => {
               <input
                 type="number"
                 required
+                defaultValue={singleClass?.availableSeat}
                 {...register("availableSeat")}
                 className="add_class-input"
               />
@@ -115,6 +107,7 @@ const AddClass = () => {
               <label className="text-sm">Price</label> <br />
               <input
                 required
+                defaultValue={singleClass?.price}
                 {...register("price")}
                 className="add_class-input"
               />
@@ -126,4 +119,4 @@ const AddClass = () => {
   );
 };
 
-export default AddClass;
+export default UpdateClass;

@@ -4,6 +4,7 @@ import ManageUsers from "../dashboard/AdminDashboard/ManageUser";
 import Dashboard from "../dashboard/Dashboard";
 import AddClass from "../dashboard/InstructorDashboard/AddClass";
 import MyClasses from "../dashboard/InstructorDashboard/MyClasses";
+import UpdateClass from "../dashboard/InstructorDashboard/UpdateClass";
 import Payment from "../dashboard/Payment/Payment";
 import EnrolledClasses from "../dashboard/UserDashboard/EnrolledClasses";
 import PaymentHistory from "../dashboard/UserDashboard/PaymentHistory";
@@ -84,6 +85,14 @@ const router = createBrowserRouter([
         element: (
           <InstructorProtected>
             <MyClasses />
+          </InstructorProtected>
+        ),
+      },
+      {
+        path: "/dashboard/instructor/update-class/:id",
+        element: (
+          <InstructorProtected>
+            <UpdateClass />
           </InstructorProtected>
         ),
       },

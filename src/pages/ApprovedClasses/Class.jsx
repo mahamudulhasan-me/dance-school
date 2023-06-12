@@ -1,4 +1,3 @@
-import axios from "axios";
 import React from "react";
 import { toast } from "react-hot-toast";
 import {
@@ -13,6 +12,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAdmin from "../../hooks/useAdmin";
 import useAuth from "../../hooks/useAuth";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useInstructor from "../../hooks/useInstructor";
 import useSelectedClass from "../../hooks/useSelectedClass";
 
@@ -21,6 +21,7 @@ const Class = ({ classDetails }) => {
   const [, refetch] = useSelectedClass();
   const [isAdmin] = useAdmin();
   const [isInstructor] = useInstructor();
+  const [axiosSecure] = useAxiosSecure();
   const navigate = useNavigate();
   const location = useLocation();
   const {
@@ -40,7 +41,7 @@ const Class = ({ classDetails }) => {
         return toast.error("It's not your job!");
       }
       if (availableSeat === 0) {
-        return toast.error("Seat is not available");
+        return toast.error("Opps! Seat are not available");
       }
       const addedClassInfo = {
         className: name,
@@ -51,16 +52,14 @@ const Class = ({ classDetails }) => {
         studentName: user.displayName,
         classId: _id,
       };
-      axios
-        .post("http://localhost:5000/selectClass", addedClassInfo)
-        .then((res) => {
-          if (res.data.insertedId) {
-            refetch();
-            toast.success("Class added successfully");
-          } else {
-            toast.error("This class already selected");
-          }
-        });
+      axiosSecure.post(`/selectClass`, addedClassInfo).then((res) => {
+        if (res.data.insertedId) {
+          refetch();
+          toast.success("Class added successfully");
+        } else {
+          toast.error("This class already selected");
+        }
+      });
     } else {
       Swal.fire({
         title: "Are you want to login?",
@@ -118,7 +117,7 @@ const Class = ({ classDetails }) => {
               </p>
               <p
                 className={`flex  items-center gap-1 text-sm ${
-                  availableSeat === 0 ? "text-rose-600" : ""
+                  availableSeat === 0 ? "text-rose-600 dark:text-red-700" : ""
                 }`}
               >
                 <FaGg />

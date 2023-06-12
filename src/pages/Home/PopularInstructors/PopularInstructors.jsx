@@ -74,8 +74,8 @@ const PopularInstructors = () => {
                       <span>Students: {instructor.totalEnrollmentStudent}</span>
                     </p>
                   </div>
-                  <div className="bg-violet-600 -mx-3 rounded-b-md border-b-2 border-rose-600 text-center text-white font-semibold pt-1 mt-2">
-                    View Profile
+                  <div className="bg-violet-600 py-2 -mx-3 rounded-b-md border-b-2 border-rose-600 text-center text-white font-semibold pt-1 mt-2">
+                    See Classes
                   </div>
                 </div>
               </div>

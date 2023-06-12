@@ -1,18 +1,21 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useState } from "react";
+import React from "react";
 import { AiOutlineCloseSquare } from "react-icons/ai";
 import { BsCheck2Square } from "react-icons/bs";
 import { FcFeedback } from "react-icons/fc";
 import Swal from "sweetalert2";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
+import useAdmin from "../../hooks/useAdmin";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useInstructor from "../../hooks/useInstructor";
 import SectionHead from "../../pages/Shared/SectionHead/SectionHead";
 
 const ManageClasses = () => {
   const { user } = useAuth();
   const [axiosSecure] = useAxiosSecure();
-  const [disable, setDisable] = useState(false);
+  const [isAdmin] = useAdmin();
+  const [isInstructor] = useInstructor();
   const {
     data: classes = [],
     refetch,
@@ -44,7 +47,6 @@ const ManageClasses = () => {
             if (data.modifiedCount > 0) {
               refetch();
               Swal.fire("Approved!", "", "success");
-              setDisable(!disable);
             }
           });
       } else if (result.isDenied) {
@@ -72,7 +74,6 @@ const ManageClasses = () => {
             if (data.modifiedCount > 0) {
               refetch();
               Swal.fire("Denied!", "", "success");
-              setDisable(!disable);
             }
           });
       } else if (result.isDenied) {
@@ -168,7 +169,7 @@ const ManageClasses = () => {
                         <div className="flex justify-center items-center text-2xl font-semibold gap-3">
                           <button
                             onClick={() => handleApprove(item._id)}
-                            disabled={disable}
+                            disabled={item.status === "approved"}
                           >
                             <BsCheck2Square
                               className="text-green-600 "
@@ -177,7 +178,7 @@ const ManageClasses = () => {
                           </button>
                           <button
                             onClick={() => handleDeny(item._id)}
-                            disabled={disable}
+                            disabled={item.status === "denied"}
                           >
                             <AiOutlineCloseSquare
                               className="text-rose-600"

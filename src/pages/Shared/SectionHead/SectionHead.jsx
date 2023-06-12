@@ -3,7 +3,7 @@ import React from "react";
 const SectionHead = ({ title }) => {
   return (
     <div
-      data-aos="fade-down"
+      // data-aos="fade-down"
       className="text-3xl text-slate-950 dark:text-gray-200 mb-10 font-semibold"
     >
       {title}
