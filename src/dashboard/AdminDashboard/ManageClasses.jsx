@@ -121,7 +121,6 @@ const ManageClasses = () => {
           }
         });
 
-      console.log(text);
     }
   };
   return (

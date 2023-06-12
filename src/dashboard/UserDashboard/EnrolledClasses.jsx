@@ -16,7 +16,7 @@ const EnrolledClasses = () => {
       return res.data;
     },
   });
-  console.log(enrolledClasses);
+
   return (
     <div>
       <SectionHead

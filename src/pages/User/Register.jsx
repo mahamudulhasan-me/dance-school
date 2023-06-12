@@ -38,8 +38,6 @@ const Register = ({ signUp, setSignUp }) => {
   const checkConfirmPassword = (e) => {
     setPassError("");
     const confirmPass = e.target.value;
-    console.log(solidPassword);
-    console.log(confirmPass);
     if (confirmPass != solidPassword) {
       return setPassError("Password don't match");
     }

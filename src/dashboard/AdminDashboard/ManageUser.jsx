@@ -19,7 +19,6 @@ const ManageUsers = () => {
       return res.data;
     },
   });
-  console.log(Users);
   return (
     <div>
       <SectionHead title="Manage All User" />

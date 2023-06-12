@@ -171,7 +171,7 @@ const CheckoutForm = ({ price }) => {
     }
     setProcessing(false);
 
-    console.log({ paymentIntent, confirmError });
+
 
     if (paymentIntent.status === "succeeded") {
       setTransactionId(paymentIntent.id);

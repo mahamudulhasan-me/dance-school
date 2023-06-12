@@ -17,7 +17,7 @@ const ApprovedClasses = () => {
       return res.data;
     },
   });
-  console.log(classes);
+
   return (
     <>
       <Helmet>
