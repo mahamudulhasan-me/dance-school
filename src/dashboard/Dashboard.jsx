@@ -24,7 +24,7 @@ const Dashboard = () => {
   return (
     <>
       <Helmet>
-        <title>Register | Dance School</title>
+        <title>Dashboard | Dance School</title>
       </Helmet>
       <div className="px-[10%] min-h-screen  grid grid-cols-12 dark:bg-slate-800">
         <div className="col-span-3 h-full w-full p-3 space-y-2 bg-gray-900 text-gray-100">
