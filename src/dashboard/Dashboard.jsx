@@ -21,8 +21,8 @@ const Dashboard = () => {
   const currentPath = location.pathname.split("/")[3];
 
   return (
-    <div className="w-4/5 mx-auto min-h-screen bg-[#E9EDF4] grid grid-cols-12">
-      <div className="col-span-3 h-full w-full p-3 space-y-2 dark:bg-gray-900 dark:text-gray-100">
+    <div className="px-[10%] min-h-screen  grid grid-cols-12 dark:bg-slate-800">
+      <div className="col-span-3 h-full w-full p-3 space-y-2 bg-gray-900 text-gray-100">
         <div className="flex items-center p-2 space-x-4">
           <img
             src={user?.photoURL}
@@ -64,7 +64,7 @@ const Dashboard = () => {
           </ul>
         </div>
       </div>
-      <div className=" col-span-9">
+      <div className=" col-span-9 bg-[#E9EDF4] dark:bg-slate-700">
         <div className="w-full">
           <Breadcrumb
             userLabel={

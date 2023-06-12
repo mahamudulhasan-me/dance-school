@@ -8,7 +8,7 @@ const Breadcrumb = ({ userLabel, currentPage }) => {
     <>
       <nav
         aria-label="breadcrumb"
-        className="w-full p-4 dark:bg-gray-800 dark:text-gray-100"
+        className="w-full p-4 bg-gray-900 text-gray-100"
       >
         <ol className="flex h-8 space-x-2">
           <li className="flex items-center">

@@ -85,7 +85,7 @@ const Header = () => {
         className=" relative mx-2"
       >
         <FaOpencart className="text-rose-600 text-4xl" />
-        <p className="absolute top-2 text-violet-600 font-semibold md:right-1/2 left-3 md:left-0">
+        <p className="absolute top-2 text-violet-600 font-semibold md:right-1/2 left-3 ">
           {selectedClasses?.length}
         </p>
       </Link>
