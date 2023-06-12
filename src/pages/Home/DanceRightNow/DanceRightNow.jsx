@@ -7,7 +7,7 @@ import danceIcon4 from "../../../assets/images/icons/icon8.webp";
 import SectionHead from "../../Shared/SectionHead/SectionHead";
 const DanceRightNow = () => {
   return (
-    <div className="pl-[10%] pr-[5%] grid grid-cols-12 gap-8 py-10 dark:bg-slate-900">
+    <div className="pl-[10%] pr-[5%] grid grid-cols-12 gap-8 py-10 overflow-hidden dark:bg-slate-900">
       <div data-aos="fade-right" className="col-span-5">
         <img src={danceGirl} alt="" />
       </div>

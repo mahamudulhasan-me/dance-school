@@ -7,7 +7,7 @@ import icon4 from "../../../assets/images/icons/icon4.webp";
 
 const DanceCount = () => {
   return (
-    <div className="grid grid-cols-4 px-[5%]  py-10 dark:bg-slate-900">
+    <div className="grid grid-cols-4 px-[5%]  py-10 overflow-hidden dark:bg-slate-900">
       <div data-aos="fade-right" className="flex justify-center items-center">
         <div className="group flex flex-col justify-center items-center text-center py-5 px-8 dark:bg-slate-800">
           <img src={icon1} alt="" className="mx-auto" />

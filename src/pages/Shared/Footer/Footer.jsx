@@ -14,7 +14,7 @@ const Footer = () => {
   return (
     <footer
       data-aos="fade-up"
-      data-aos-anchor-placement="bottom-bottom"
+      data-aos-anchor-placement="top-bottom"
       className="px-8 divide-y bg-violet-800 dark:bg-slate-900 text-gray-100"
     >
       <div className="container grid grid-cols-4 justify-between py-10 mx-auto space-y-8  lg:space-y-0">
