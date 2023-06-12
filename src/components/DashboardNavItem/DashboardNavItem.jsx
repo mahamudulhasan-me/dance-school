@@ -7,7 +7,6 @@ const DashboardNavItem = ({ to, icon: Icon, name }) => {
       <Link
         to={to}
         rel="noopener noreferrer"
-        href="#"
         className="flex items-center p-2 gap-2 text-base  rounded-md"
       >
         <Icon size={24} className="text-violet-700" />

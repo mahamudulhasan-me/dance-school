@@ -5,13 +5,13 @@
 @tailwind utilities;
 
 body {
-  @apply max-w-[1366px] font-roboto dark:bg-slate-900;
+  @apply max-w-[2520px]  mx-auto font-roboto dark:bg-slate-900;
 }
 p {
   @apply font-nunito;
 }
 .my-menu li {
-  @apply px-4 md:mb-0 mb-3  hover:text-violet-700  text-lg transition-all hover:transition-all hover:duration-300 duration-300 text-white;
+  @apply px-4 md:mb-0 mb-3  hover:bg-gradient-to-t from-violet-500 to-pink-600 py-2 rounded-md text-lg transition-all hover:transition-all hover:duration-300 duration-300 text-white mx-2;
 }
 .my-btn1 {
   @apply w-40 h-12  text-white text-xl  bg-violet-700 hover:bg-white hover:text-slate-900 hover:transition-all hover:duration-150 transition-all duration-300;

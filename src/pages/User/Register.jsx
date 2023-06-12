@@ -1,8 +1,10 @@
 import { updateProfile } from "@firebase/auth";
 import axios from "axios";
 import React, { useState } from "react";
+import { Helmet } from "react-helmet";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
+import { FidgetSpinner } from "react-loader-spinner";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 
@@ -11,7 +13,7 @@ const Register = ({ signUp, setSignUp }) => {
   const { createNewUser } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const [acceptTerms, setAcceptTerms] = useState(true);
-
+  const [loading, setLoading] = useState(false);
   // check password validity
   const [passError, setPassError] = useState("");
   const [solidPassword, setSolidPassword] = useState("");
@@ -48,6 +50,7 @@ const Register = ({ signUp, setSignUp }) => {
   // react hook from functionality
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
+    setLoading(true);
     const { name, email, photoUrl, phoneNumber, gender } = data;
     data.password = solidPassword;
     createNewUser(data.email, data.password)
@@ -76,16 +79,26 @@ const Register = ({ signUp, setSignUp }) => {
                 if (res.data.insertedId) {
                   toast.success(`User Create Successfully`);
                   navigate("/");
+                  setLoading(false);
                 }
               });
           })
-          .catch((error) => toast.error(error.message));
+          .catch((error) => {
+            toast.error(error.message);
+            setLoading(false);
+          });
       })
-      .catch((error) => toast.error(error.message));
+      .catch((error) => {
+        toast.error(error.message);
+        setLoading(false);
+      });
   };
 
   return (
     <>
+      <Helmet>
+        <title>Register | Dance School</title>
+      </Helmet>
       <div className=" md:w-[31%] w-[95%] rounded-lg  mx-auto bg-violet-50 p-10 mt-20">
         <h1 className="text-center text-2xl text-slate-900 font-semibold my-2">
           SignUp for free
@@ -176,12 +189,26 @@ const Register = ({ signUp, setSignUp }) => {
           <button
             type="submit"
             disabled={acceptTerms}
-            className={`mt-10 text-center bg-violet-700  w-full text-white text-lg rounded-lg py-3 ${
+            className={`${loading ? "py-0" : "py-3"} ${
               acceptTerms ? "bg-opacity-70" : "bg-opacity-100"
-            }`}
+            } mt-10 text-center cursor-pointer bg-violet-700 w-full text-white text-lg rounded-lg flex justify-center items-center`}
           >
-            Login with email
+            {loading ? (
+              <FidgetSpinner
+                visible={true}
+                height="50"
+                width="50"
+                ariaLabel="dna-loading"
+                wrapperStyle={{}}
+                wrapperClass="dna-wrapper"
+                ballColors={["#ff0000", "#00ff00", "#0000ff"]}
+                backgroundColor="#F4442E"
+              />
+            ) : (
+              "Sign up"
+            )}
           </button>
+
           <p className="text-center text-gray-500">
             Already have an account?
             <Link
@@ -189,7 +216,7 @@ const Register = ({ signUp, setSignUp }) => {
               onClick={() => setSignUp(!signUp)}
             >
               {" "}
-              Sign In
+              Sign in
             </Link>
           </p>
         </form>

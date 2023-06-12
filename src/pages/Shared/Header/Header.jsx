@@ -6,6 +6,7 @@ import { FaOpencart } from "react-icons/fa";
 import { HiMoon } from "react-icons/hi";
 import { Link } from "react-router-dom";
 import logo from "../../../assets/images/dance-logo.png";
+import ActiveLink from "../../../components/ActiveLink/ActiveLink";
 import useAuth from "../../../hooks/useAuth";
 import useSelectedClass from "../../../hooks/useSelectedClass";
 const Header = () => {
@@ -65,30 +66,32 @@ const Header = () => {
 
   const naveItems = (
     <>
-      <Link to={"/"}>
+      <ActiveLink to={"/"}>
         <li>Home</li>
-      </Link>
-      <Link to={"/instructors"}>
+      </ActiveLink>
+      <ActiveLink to={"/instructors"}>
         <li>Instructor</li>
-      </Link>
-      <Link to={"/classes"}>
+      </ActiveLink>
+      <ActiveLink to={"/classes"}>
         <li>Classes</li>
-      </Link>
+      </ActiveLink>
 
       {user && (
-        <Link to={"/dashboard"}>
-          <li>Dashboard</li>
-        </Link>
+        <>
+          <ActiveLink to={"/dashboard"}>
+            <li>Dashboard</li>
+          </ActiveLink>
+          <Link
+            to={"/dashboard/student/selected-classes"}
+            className=" relative mx-2"
+          >
+            <FaOpencart className="text-rose-600 text-4xl" />
+            <p className="absolute top-2 text-white font-semibold md:right-1/2 left-3 ">
+              {selectedClasses?.length}
+            </p>
+          </Link>{" "}
+        </>
       )}
-      <Link
-        to={"/dashboard/student/selected-classes"}
-        className=" relative mx-2"
-      >
-        <FaOpencart className="text-rose-600 text-4xl" />
-        <p className="absolute top-2 text-violet-600 font-semibold md:right-1/2 left-3 ">
-          {selectedClasses?.length}
-        </p>
-      </Link>
       <button onClick={handleToggle} className="">
         <label className="swap swap-rotate w-12 h-12">
           <input type="checkbox" />

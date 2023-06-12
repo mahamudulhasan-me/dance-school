@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-const AdminActiveLink = ({ to, children }) => {
+const ActiveLink = ({ to, children }) => {
   return (
     <NavLink
       to={to}
@@ -16,4 +16,4 @@ const AdminActiveLink = ({ to, children }) => {
   );
 };
 
-export default AdminActiveLink;
+export default ActiveLink;
