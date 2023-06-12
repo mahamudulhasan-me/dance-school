@@ -13,6 +13,7 @@ import Main from "../layouts/Main";
 import ApprovedClasses from "../pages/ApprovedClasses/ApprovedClasses";
 import Home from "../pages/Home/Home";
 import Instructors from "../pages/Instructors/Instructors";
+import NotFound from "../pages/NotFound/NotFound";
 import Login from "../pages/User/Login";
 import InstructorProtected from "../protectedRoute/InstructorProtected";
 import ProtectedRoute from "../protectedRoute/ProtectedRoute";
@@ -22,6 +23,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Main />,
+    errorElement: <NotFound />,
     children: [
       {
         path: "/",

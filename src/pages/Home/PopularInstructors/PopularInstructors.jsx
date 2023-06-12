@@ -80,7 +80,7 @@ const PopularInstructors = () => {
               <div
                 data-aos="zoom-in"
                 key={instructor._id}
-                className="mt-2 hover:mt-0 duration-300 hover:mb-2 group  dark:border-transparent dark:border-[#e2e8f0] px-3 pt-3 rounded-md group bg-white  dark:bg-slate-900"
+                className="mt-2 hover:mt-0 hover:duration-300 duration-300 hover:mb-2 group  dark:border-transparent dark:border-[#e2e8f0] px-3 pt-3 rounded-md group bg-white  dark:bg-slate-900"
               >
                 <div className="relative overflow-hidden ">
                   <img
