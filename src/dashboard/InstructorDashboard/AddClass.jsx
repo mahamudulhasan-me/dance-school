@@ -22,8 +22,9 @@ const AddClass = () => {
       status,
     } = data;
 
-    // TODO: imagebb url can be hold on .env
-    const imgbbURL = `https://api.imgbb.com/1/upload?key=2d2ae9c5dd9e1059fbd193b5ec64e3fe`;
+    const imgbbURL = `https://api.imgbb.com/1/upload?key=${
+      import.meta.env.VITE_IMAGE_KEY
+    }`;
     let formData = new FormData();
     formData.append("image", image[0]);
 

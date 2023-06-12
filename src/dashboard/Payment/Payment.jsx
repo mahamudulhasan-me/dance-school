@@ -13,11 +13,7 @@ const ELEMENTS_OPTIONS = {
   ],
 };
 
-// TODO: this keys need to transfer on .env file
-
-const stripePromise = loadStripe(
-  "pk_test_51NEWqJBqXwzigbXRP470KDyMHym9vZ2BX4IWTtW2rKgVi70RgduKN7VyUy5ThSS77Om0vAd212ETrKNoNcl5ndw900IHFiKIg3"
-);
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PK);
 const Payment = () => {
   const [selectedClasses, refetch, isLoading] = useSelectedClass();
 
