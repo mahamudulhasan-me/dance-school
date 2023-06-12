@@ -34,19 +34,19 @@ const Instructors = () => {
         {isLoading ? (
           <LoadingSpinner />
         ) : (
-          <div className="grid grid-cols-4 gap-7">
+          <div className="md:grid grid-cols-4 gap-7">
             {instructors.map((instructor) => (
               <div
                 key={instructor._id}
-                className="mt-2 hover:mt-0 duration-300 hover:mb-2 group border  dark:border-transparent dark:border-[#e2e8f0] px-3 pt-3 rounded-md group bg-white  dark:bg-slate-900 flex flex-col  justify-between"
+                className="mt-2 hover:mt-0 mb-8 md:mb-0 duration-300 md:hover:mb-2 group border  dark:border-transparent dark:border-[#e2e8f0] px-3 pt-3 rounded-md group bg-white  dark:bg-slate-900 flex flex-col  justify-between"
               >
                 <div className="relative overflow-hidden">
                   <img
                     src={instructor.photoUrl}
                     alt=""
-                    className="rounded-md group-hover:scale-110 duration-700 "
+                    className="rounded-md group-hover:scale-110 duration-500 "
                   />
-                  <div className="absolute bg-violet-700 hidden group-hover:flex top-0 right-0 bottom-0 left-0 bg-opacity-70 duration-1000 ease-in justify-evenly items-center gap-1 text-2xl text-white">
+                  <div className="absolute bg-violet-700 hidden group-hover:flex top-0 right-0 bottom-0 left-0 bg-opacity-70 duration-500 ease-in justify-evenly items-center gap-1 text-2xl text-white">
                     <Link>
                       <FaFacebook />
                     </Link>

@@ -1,7 +1,7 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import { Autoplay, Navigation } from "swiper";
+import { Navigation } from "swiper";
 import slider1 from "../../../assets/images/banner/slider1-1.jpg";
 import slider2 from "../../../assets/images/banner/slider2-1.jpg";
 import "./Styles.css";
@@ -10,35 +10,35 @@ const Banner = () => {
     <>
       <Swiper
         navigation={true}
-        autoplay={{
-          delay: 20000,
-          disableOnInteraction: false,
-        }}
-        modules={[Navigation, Autoplay]}
+        // autoplay={{
+        //   delay: 20000,
+        //   disableOnInteraction: false,
+        // }}
+        modules={[Navigation]}
         className="mySwiper"
       >
         <SwiperSlide>
           <div className="header-wrapper ">
             <div
-              className="zoominheader h-[calc(100vh+5rem)] bg-cover"
+              className="bg-center zoominheader h-[calc(100vh+5rem)] bg-cover"
               style={{ backgroundImage: `url(${slider2})` }}
             ></div>
             <div className="absolute top-1/4 px-[10%]">
               <h3 className="text-white  text-4xl">Be in the</h3>
               <h1
                 data-aos="flip-left"
-                className="font-extrabold text-transparent text-8xl bg-clip-text bg-gradient-to-r from-violet-600 to-pink-600 uppercase"
+                className="font-extrabold text-transparent md:text-8xl text-5xl bg-clip-text bg-gradient-to-r from-violet-600 to-pink-600 uppercase"
               >
                 SpotLight
               </h1>
               <p className="text-white italic text-lg font-nunito -mt-4 tracking-[0.2rem]">
                 Learn from the Best - Dance Profession
               </p>
-              <div className="text-white uppercase mt-8 space-y-5 font-nunito">
-                <h5 className=" flex justify-between text-xl items-center">
+              <div className="text-white  uppercase mt-8 space-y-5 font-nunito">
+                <h5 className="flex justify-between text-xl items-center">
                   <span>
                     Hip-hop dance
-                    <span className="tracking-[0.2rem] text-2xl">
+                    <span className="tracking-[0.2rem] text-2xl ">
                       {" "}
                       ----------
                     </span>
@@ -90,17 +90,17 @@ const Banner = () => {
         <SwiperSlide>
           <div className="header-wrapper ">
             <div
-              className="zoominheader h-[calc(100vh+5rem)] bg-cover"
+              className="bg-center zoominheader h-[calc(100vh+5rem)] bg-cover"
               style={{ backgroundImage: `url(${slider1})` }}
             ></div>
             <div className=" absolute top-1/3 w-full mx-auto text-white text-center">
-              <p className="text-4xl font-semibold mb-5">
+              <p className="md:text-4xl text-2xl font-semibold mb-5">
                 Create The Best Movies for You
               </p>
               <h1
                 data-aos="flip-up"
                 data-aos-duration="2000"
-                className="text-9xl font-bold uppercase"
+                className="md:text-9xl text-5xl font-bold uppercase"
               >
                 Dance To The Beat
               </h1>

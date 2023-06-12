@@ -6,7 +6,7 @@ const PageTopBanner = ({ title }) => {
   return (
     <div
       style={{ backgroundImage: `url(${banner})` }}
-      className="h-[calc(100vh-50vh)] flex justify-center items-center bg-cover bg-slate-950 bg-blend-overlay bg-opacity-60"
+      className="bg-center   h-[calc(100vh-50vh)] flex justify-center items-center bg-cover bg-slate-950 bg-blend-overlay bg-opacity-60"
     >
       <div className="flex flex-col justify-center items-center">
         <h1

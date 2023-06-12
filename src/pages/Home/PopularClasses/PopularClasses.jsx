@@ -9,14 +9,14 @@ const PopularClasses = () => {
       style={{ backgroundImage: `url(${bg})` }}
       className="overflow-hidden min-h-screen pt-3 pb-10 bg-cover bg-white dark:bg-slate-900 bg-blend-overlay bg-opacity-70"
     >
-      <div className="grid grid-cols-12 pl-5 mt-20 gap-6">
-        <div className="col-span-8">
+      <div className="md:grid md:grid-cols-12 md:pl-5 px-5 md:px-0 mt-20 gap-6">
+        <div className="md:col-span-8">
           <SectionHead title={"Popular Classes"} />
           <div data-aos="fade-right">
             <ClassSlider />
           </div>
         </div>
-        <div className="col-span-4 pr-20 ">
+        <div className="col-span-4 md:pr-20 ">
           <SectionHead title={"Opening Hours"} />
           <div className="space-y-5" data-aos="fade-left">
             <OpeningDayTime day="Saturday" time="8am-10pm" />

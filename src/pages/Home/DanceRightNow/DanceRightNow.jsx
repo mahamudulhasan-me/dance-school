@@ -7,7 +7,7 @@ import danceIcon4 from "../../../assets/images/icons/icon8.webp";
 import SectionHead from "../../Shared/SectionHead/SectionHead";
 const DanceRightNow = () => {
   return (
-    <div className="pl-[10%] pr-[5%] grid grid-cols-12 gap-8 py-10 overflow-hidden dark:bg-slate-900">
+    <div className="pl-[10%] pr-[5%] md:grid grid-cols-12 gap-8 py-10 overflow-hidden dark:bg-slate-900">
       <div data-aos="fade-right" className="col-span-5">
         <img src={danceGirl} alt="" />
       </div>
@@ -23,13 +23,13 @@ const DanceRightNow = () => {
         <h1 className="font-semibold text-4xl -mt-10 dark:text-gray-200">
           LEARN NUANCES FROM MASTERS
         </h1>
-        <p className="text-gray-600 dark:text-gray-400 text-lg mt-4 font-nunito ">
+        <p className="text-gray-600  dark:text-gray-400 text-lg mt-4 font-nunito ">
           Canvas metri essar. Incubator ramen viral product management drect
           mailing. such founders gamification Effct. Branding funding incubator.
           Release user experience beta. Backing monetization paradigm shift
           client
         </p>
-        <div className="grid grid-cols-2 mt-10 gap-5 ">
+        <div className="md:grid grid-cols-2 md:space-y-5 space-y-5 gap-5 mt-5">
           <div className="space-y-3 group" data-aos="fade-down">
             <img
               src={danceIcon1}

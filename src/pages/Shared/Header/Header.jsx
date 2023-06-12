@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
+import { AiOutlineMenuUnfold } from "react-icons/ai";
 import { BsFillSunFill } from "react-icons/bs";
 import { FaOpencart } from "react-icons/fa";
 import { HiMoon } from "react-icons/hi";
@@ -84,7 +85,7 @@ const Header = () => {
         className=" relative mx-2"
       >
         <FaOpencart className="text-rose-600 text-4xl" />
-        <p className="absolute top-2 text-violet-600 font-semibold right-1/2 ">
+        <p className="absolute top-2 text-violet-600 font-semibold md:right-1/2 left-3 md:left-0">
           {selectedClasses?.length}
         </p>
       </Link>
@@ -99,7 +100,7 @@ const Header = () => {
       </button>
       {user ? (
         <>
-          <div className="w-10 h-10 rounded-full ring ring-violet-700 mx-2">
+          <div className="w-10 h-10 md:mb-0 mb-2 rounded-full ring ring-violet-700 mx-2">
             <img
               src={user?.photoURL}
               alt=""
@@ -126,26 +127,13 @@ const Header = () => {
     <div className="px-[10%] absolute top-0 left-0 right-0 mt-2 z-50">
       <div className="navbar">
         <div className="navbar-start">
-          <div className="dropdown">
+          <div className="dropdown my-menu ">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h8m-8 6h16"
-                />
-              </svg>
+              <AiOutlineMenuUnfold size={30} color="White" />
             </label>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+              className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-gray-900 bg-opacity-50 rounded-box w-52"
             >
               {naveItems}
             </ul>

@@ -83,7 +83,7 @@ const Register = ({ signUp, setSignUp }) => {
 
   return (
     <>
-      <div className=" w-[31%] mx-auto bg-violet-50 p-10 mt-20">
+      <div className=" md:w-[31%] w-[95%] rounded-lg  mx-auto bg-violet-50 p-10 mt-20">
         <h1 className="text-center text-2xl text-slate-900 font-semibold my-2">
           SignUp for free
         </h1>

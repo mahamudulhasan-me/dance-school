@@ -64,7 +64,7 @@ const Login = () => {
       className="bg-cover bg-violet-900 bg-blend-overlay min-h-screen flex flex-col justify-center items-center bg-opacity-30 py-10"
     >
       {!signUp ? (
-        <div className=" w-[31%] mx-auto bg-violet-50 p-10 mt-20">
+        <div className=" md:w-[31%] rounded-lg mx-auto bg-violet-50 p-10 mt-20">
           <h1 className="text-center text-2xl text-slate-900 font-semibold my-2">
             Login to your account
           </h1>

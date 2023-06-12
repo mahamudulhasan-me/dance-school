@@ -84,7 +84,7 @@ const Class = ({ classDetails }) => {
         availableSeat === 0
           ? "bg-rose-300 dark:bg-rose-500"
           : "bg-gray-50 dark:bg-slate-900"
-      }  font-nunito font-semibold group hover:shadow-2xl mb-12`}
+      } rounded-md font-nunito font-semibold group hover:shadow-2xl mb-12`}
     >
       <div
         className={` px-8 pt-8 group-hover:scale-105 duration-300  rounded-lg`}
