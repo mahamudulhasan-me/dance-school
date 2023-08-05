@@ -5,10 +5,12 @@ import DanceCount from "./DanceCount/DanceCount";
 import DanceRightNow from "./DanceRightNow/DanceRightNow";
 import PopularClasses from "./PopularClasses/PopularClasses";
 import PopularInstructors from "./PopularInstructors/PopularInstructors";
+import Pricing from "./Pricing/Pricing";
+import WhyChoose from "./WhyChoose/WhyChoose";
 
 const Home = () => {
   return (
-    <div>
+    <div className="overflow-hidden relative">
       <Helmet>
         <title>Home | Dance School</title>
       </Helmet>
@@ -16,6 +18,8 @@ const Home = () => {
       <DanceRightNow />
       <PopularClasses />
       <DanceCount />
+      <WhyChoose />
+      <Pricing />
       <PopularInstructors />
     </div>
   );
