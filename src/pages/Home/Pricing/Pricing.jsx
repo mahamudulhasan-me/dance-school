@@ -6,6 +6,7 @@ import PriceCard from "./PriceCard";
 const Pricing = () => {
   return (
     <div
+      id="pricing"
       style={{ backgroundImage: `url(${bg})` }}
       className="h-screen bg-cover bg-fixed bg-violet-600 dark:bg-slate-950 dark:bg-opacity-90 bg-blend-overlay  p-10"
     >

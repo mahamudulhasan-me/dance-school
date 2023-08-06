@@ -1,5 +1,6 @@
 import React from "react";
 import { Helmet } from "react-helmet";
+
 import Banner from "./Banner/Banner";
 import DanceCount from "./DanceCount/DanceCount";
 import DanceRightNow from "./DanceRightNow/DanceRightNow";
@@ -14,12 +15,15 @@ const Home = () => {
       <Helmet>
         <title>Home | Dance School</title>
       </Helmet>
+
       <Banner />
       <DanceRightNow />
       <PopularClasses />
       <DanceCount />
       <WhyChoose />
+
       <Pricing />
+
       <PopularInstructors />
     </div>
   );
