@@ -8,6 +8,9 @@ module.exports = {
         roboto: ["Roboto Condensed", "sans-serif"],
         nunito: ["Nunito", "sans-serif"],
       },
+      backgroundImage: {
+        priceCardBG: "url('./src/assets/images/table-bg.png')",
+      },
     },
   },
   plugins: [require("daisyui")],

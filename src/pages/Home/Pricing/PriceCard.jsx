@@ -1,14 +1,26 @@
 import React from "react";
 import { HiArrowNarrowRight } from "react-icons/hi";
-
-const PriceCard = ({ classCount, price, features }) => {
+import tableBG from "../../../assets/images/table-bg.png";
+const PriceCard = ({ classCount, price, features, duration }) => {
+  const bg = {
+    backgroundImage: `url(${tableBG})`,
+  };
   return (
-    <div className="bg-white p-10 flex flex-col justify-between">
+    <div
+      data-aos="fade-down"
+      data-aos-easing="linear"
+      data-aos-duration={duration}
+      className={`group bg-white  hover:bg-slate-950 dark:bg-slate-900  p-10 flex flex-col justify-between  hover:bg-priceCardBG dark:text-white `}
+    >
       <div>
         <div className="border-b pb-8">
-          <h3 className="text-xl uppercase">{classCount} Class A Week</h3>
-          <p>Billed annually or ${parseInt(price / 12)} monthly</p>
-          <h1 className="text-4xl text-slate-900 font-semibold">
+          <h3 className="text-xl uppercase font-semibold text-gray-700 dark:text-white  group-hover:text-white">
+            {classCount} Class A Week
+          </h3>
+          <p className="text-gray-600 group-hover:text-white dark:text-white ">
+            Billed annually or ${parseInt(price / 12)} monthly
+          </p>
+          <h1 className="text-4xl text-slate-700 group-hover:text-white dark:text-white  font-semibold ">
             ${price} /<span className="text-lg">Year</span>
           </h1>
         </div>

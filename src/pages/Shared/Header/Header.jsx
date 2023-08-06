@@ -69,6 +69,7 @@ const Header = () => {
       <ActiveLink to={"/"}>
         <li>Home</li>
       </ActiveLink>
+
       <ActiveLink to={"/instructors"}>
         <li>Instructor</li>
       </ActiveLink>

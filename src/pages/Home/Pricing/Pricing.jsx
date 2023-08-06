@@ -7,7 +7,7 @@ const Pricing = () => {
   return (
     <div
       style={{ backgroundImage: `url(${bg})` }}
-      className="h-screen bg-cover bg-fixed bg-violet-600 bg-blend-overlay  p-10"
+      className="h-screen bg-cover bg-fixed bg-violet-600 dark:bg-slate-950 dark:bg-opacity-90 bg-blend-overlay  p-10"
     >
       <SectionHead
         title={<h1 className="text-white">BECOME MEMBER OF FLAIRS</h1>}
@@ -15,6 +15,7 @@ const Pricing = () => {
 
       <div className="grid grid-cols-4 divide-x divide-gray-300">
         <PriceCard
+          duration="500"
           classCount="2"
           price="199"
           features={
@@ -25,7 +26,9 @@ const Pricing = () => {
             </>
           }
         />
+
         <PriceCard
+          duration="1000"
           classCount="3"
           price="150"
           features={
@@ -38,6 +41,7 @@ const Pricing = () => {
           }
         />
         <PriceCard
+          duration="1500"
           classCount="4"
           price="200"
           features={
@@ -50,6 +54,7 @@ const Pricing = () => {
           }
         />
         <PriceCard
+          duration="2000"
           classCount="4"
           price="250"
           features={
